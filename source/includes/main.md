@@ -1,7 +1,6 @@
 # Hotels Web Services API - Developers Guide
 **Version 5.0.0**<br>
 **5 February 2020**
-
 # Introduction & Accreditation Process
 
 ## About this guide
@@ -1329,3 +1328,7 @@ Therefore Nights=2 may not show any results.
 - The Dep_Flight_To is not valid
 - The Arr_Flight_Num is not valid
 - The Dep_Flight_Num is not valid
+
+# FAQ
+
+## tbd
