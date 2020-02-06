@@ -60,7 +60,7 @@
       "js-yaml": "~3.13",
       "jshint": "~2.10",
       "lunr": "~2.3",
-      "marked": "~0.8",
+      "marked": "~0.3",
       "merge-stream": "~2.0",
       "node-sass": "~4.13",
       "tocbot": "~4.10"
