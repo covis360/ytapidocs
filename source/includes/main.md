@@ -59,7 +59,7 @@ URL/index.asp?RSRT=134&LangID=EN&Username=xmltestme&Password=testme&...
 
 > Example request by **hotel id**
 ```plaintext
-URL/index?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
+URL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example error response
@@ -288,7 +288,7 @@ URL/index?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 
 
 ## Board option descriptions
-URL: <a href="http://www.youtravel.com/boardoptions_popup.asp/" target="_blank">`http://www.youtravel.com/boardoptions_popup.asp`</a>
+URL: <a href="https://www.youtravel.com/boardoptions_popup.asp" target="_blank">`https://www.youtravel.com/boardoptions_popup.asp`</a>
 
 **Deep Link**<br>
 Special search request criteria can be used to retrieve a deep link to the youtravel.com website from the XML feed.
