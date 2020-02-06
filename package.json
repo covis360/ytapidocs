@@ -30,8 +30,8 @@
       "start": "gulp serve",
       "prebuild": "gulp clean",
       "build": "gulp build-static-site",
-      "postbuild": "gulp lint && gulp publish",
-      "deploy": "deploy.sh"
+      "postbuild": "gulp publish",
+      "deploy": "/bin/bash deploy.sh"
    },
    "dependencies": {
       "del": "~5.1",

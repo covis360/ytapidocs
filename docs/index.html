@@ -3,225 +3,2429 @@
    <head>
       <meta charset=utf-8>
       <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
-      <title>API Reference</title>
+      <title>YouTravel API Reference</title>
       <link rel=icon href=images/bookmark.png>
       <link href=stylesheets/screen.css rel=stylesheet media=screen>
       <link href=stylesheets/print.css rel=stylesheet media=print>
       <link href=stylesheets/highlight-monokai.css rel=stylesheet media=screen,print>
       <script src=javascripts/all.js type=text/javascript></script>
    </head>
-   <body class="" data-languages="[&#34;bash&#34;,&#34;ruby&#34;,&#34;python&#34;,&#34;javascript&#34;]">
+   <body class="" data-languages="[]">
       <a href=# id=nav-button>
          <span>NAV <img alt=navbar class=image-navbar src=images/navbar.png></span>
       </a>
       <div class=tocify-wrapper>
          <img alt=logo class=image-logo src=images/logo.png>
          <div class=lang-selector>
-            <a href=# data-language-name="bash">bash</a>
-            <a href=# data-language-name="ruby">ruby</a>
-            <a href=# data-language-name="python">python</a>
-            <a href=# data-language-name="javascript">javascript</a>
          </div>
          <div class=search>
             <input type=text class=search id=input-search placeholder="Search">
          </div>
          <ul class=search-results></ul>
          <div id=toc></div>
-         <ul class=toc-footer>
-            <li><a href=#>Sign up for a developer key</a></li>
-            <li><a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a></li>
-         </ul>
       </div>
       <div class=page-wrapper>
          <div class=dark-box></div>
          <div class=content>
-            <h1 id="introduction">Introduction</h1>
-            <p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-            <p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-            <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-            <h1 id="authentication">Authentication</h1>
+            <h1 id="hotels-web-services-api---developers-guide">Hotels Web Services API - Developers Guide</h1>
+            <p><strong>Version 5.0.0</strong><br>
+               <strong>5 February 2020</strong></p>
+            <h1 id="introduction--accreditation-process">Introduction &amp; Accreditation Process</h1>
+            <h2 id="about-this-guide">About this guide</h2>
+            <p>Welcome to the YouTravel Hotels Web Services API Developers Guide This document describes access using http POST or GET method. The http response will be of type &quot;text/xml&quot; using ISO-8859-1 encoding and will contain the response XML.</p>
+            <p>To help you navigate the docs, this page is split into 3 vertical sections:</p>
+            <ul>
+               <li>the navigation menu and search on the left,</li>
+               <li>the content in the middle,</li>
+               <li>and usage examples on the right.</li>
+            </ul>
+            <aside class="notice"> For security purposes we require static IP addresses otherwise the access to the feed won’t be authorized. </aside>
+            <h2 id="server-details">Server details</h2>
+            <p><strong>Test server</strong><br> URL: <a href="http://testxml.youtravel.com/webservicestest/" target="_blank"><code>http://testxml.youtravel.com/webservicestest</code></a><br> Username: <code>xmltestme</code><br> Password: <code>testme</code></p>
+            <p><strong>Live Access</strong> As part of the final stages of testing there is an accreditation process necessitating sign off from our XML support team.<br> There are two phases of Accreditation one in test the other live; this includes checking all xml request &amp; response messaging.</p>
+            <aside class="notice">
+               <b>IP Whitelisting:</b> to obtain a successful response from our live web service we require your known IP range, </aside>
+            <h2 id="testing-best-practices">Testing best practices</h2>
+            <ol>
+               <li>Lead name : <code>Mr Test Test</code></li>
+               <li>Book at least 3 months in advance</li>
+               <li>Hotel ID: <code>1572</code> (Test Hotel EU)</li>
+            </ol>
+            <h1 id="availability">Availability</h1>
+            <h2 id="availability-search-request-and-response">Availability Search Request and Response</h2>
             <blockquote>
-               <p>To authorize, use this code:</p>
+               <p>Request URL</p>
             </blockquote>
-            <pre class="highlight ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'kittn'</span>
-
-api = Kittn::APIClient.authorize!(<span class="hljs-string">'meowmeowmeow'</span>)</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> kittn
-
-api = kittn.authorize(<span class="hljs-string">'meowmeowmeow'</span>)</code></pre><pre class="highlight bash"><code><span class="hljs-comment"># With shell, you can just pass the correct header with each request</span>
-curl <span class="hljs-string">"api_endpoint_here"</span>
-  -H <span class="hljs-string">"Authorization: meowmeowmeow"</span></code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">const</span> kittn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'kittn'</span>);
-
-<span class="hljs-keyword">let</span> api = kittn.authorize(<span class="hljs-string">'meowmeowmeow'</span>);</code></pre>
+            <pre class="highlight "><code>URL/<span class="hljs-keyword">index</span>.asp</code></pre>
             <blockquote>
-               <p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+               <p>Example request by <strong>airport</strong></p>
             </blockquote>
-            <p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="https://example.com/developers">developer portal</a>.</p>
-            <p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-            <p><code>Authorization: meowmeowmeow</code></p>
-            <aside class=notice> You must replace <code>meowmeowmeow</code> with your personal API key. </aside>
-            <h1 id="kittens">Kittens</h1>
-            <h2 id="get-all-kittens">Get All Kittens</h2>
-            <pre class="highlight ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'kittn'</span>
-
-api = Kittn::APIClient.authorize!(<span class="hljs-string">'meowmeowmeow'</span>)
-api.kittens.get</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> kittn
-
-api = kittn.authorize(<span class="hljs-string">'meowmeowmeow'</span>)
-api.kittens.get()</code></pre><pre class="highlight bash"><code>curl <span class="hljs-string">"https://example.com/api/kittens"</span>
-  -H <span class="hljs-string">"Authorization: meowmeowmeow"</span></code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">const</span> kittn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'kittn'</span>);
-
-<span class="hljs-keyword">let</span> api = kittn.authorize(<span class="hljs-string">'meowmeowmeow'</span>);
-<span class="hljs-keyword">let</span> kittens = api.kittens.get();</code></pre>
+            <pre class="highlight "><code><span class="hljs-builtin-name">GET</span> /index?<span class="hljs-attribute">Dstn</span>=FAO&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
             <blockquote>
-               <p>The above command returns JSON structured like this:</p>
+               <p>Example request by <strong>resort</strong></p>
             </blockquote>
-            <pre class="highlight json"><code>[
-   {
-      <span class="hljs-attr">"id"</span>:         <span class="hljs-number">1</span>,
-      <span class="hljs-attr">"name"</span>:       <span class="hljs-string">"Fluffums"</span>,
-      <span class="hljs-attr">"breed"</span>:      <span class="hljs-string">"calico"</span>,
-      <span class="hljs-attr">"fluffiness"</span>: <span class="hljs-number">6</span>,
-      <span class="hljs-attr">"cuteness"</span>:   <span class="hljs-number">7</span>
-   },
-   {
-      <span class="hljs-attr">"id"</span>:         <span class="hljs-number">2</span>,
-      <span class="hljs-attr">"name"</span>:       <span class="hljs-string">"Max"</span>,
-      <span class="hljs-attr">"breed"</span>:      <span class="hljs-string">"unknown"</span>,
-      <span class="hljs-attr">"fluffiness"</span>: <span class="hljs-number">5</span>,
-      <span class="hljs-attr">"cuteness"</span>:   <span class="hljs-number">10</span>
-   }
-]</code></pre>
-            <p>This endpoint retrieves all kittens.</p>
-            <h3 id="http-request">HTTP Request</h3>
-            <p><code>GET https://example.com/api/kittens</code></p>
-            <h3 id="query-parameters">Query Parameters</h3>
+            <pre class="highlight "><code><span class="hljs-builtin-name">GET</span> /index?<span class="hljs-attribute">RSRT</span>=134&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
+            <blockquote>
+               <p>Example request by <strong>hotel id</strong></p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-builtin-name">GET</span> /index?<span class="hljs-attribute">RSRT</span>=HID=1572&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
+            <blockquote>
+               <p>Example error response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span>No Results Found.<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <blockquote>
+               <p>Example successful response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"http://xml.youtravel.com/webservices/xsd_yt_srq.xsd"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Search_Criteria</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Company</span>&gt;</span>XML Test Affiliate<span class="hljs-tag">&lt;/<span class="hljs-name">Company</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Dstn</span>&gt;</span>ayt<span class="hljs-tag">&lt;/<span class="hljs-name">Dstn</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Rsrt</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rsrt</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Rooms</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Rooms</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Nofn</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">Nofn</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Checkin_Date</span>&gt;</span>02/11/2020<span class="hljs-tag">&lt;/<span class="hljs-name">Checkin_Date</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>ALL<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Adlts_1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">Adlts_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Child_1</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Child_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Infant_1</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Infant_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Adlts_2</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Adlts_2</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Child_2</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Child_2</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Infant_2</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Infant_2</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Adlts_3</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Adlts_3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Child_3</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Child_3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Infant_3</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Infant_3</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Search_Criteria</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">session</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"1011023528397202030464313"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"38493"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Barut Arum<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>5 Stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>(AI)<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Child_Age</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">Child_Age</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Country</span>&gt;</span>Turkey<span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Antalya<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span>&gt;</span>Side<span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Image</span>&gt;</span>https://images.youtravel.com/photos/get_hotel_photo.aspx?id=3245088_9CE3A43DDFDADE9448B8D86393DCFA7A37D1B717C07A15CFF39E4223CA3502CB<span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Desc</span>&gt;</span>&lt;![CDATA[directly at the beach; beach details: private sandy beach; distance (approx.): t]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Room_1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Passengers</span> <span class="hljs-attr">Adults</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">Children</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Infants</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Passengers</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2DSL:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDeDSL_DR_AI_yaeapapaaaaaiadtjgpyaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Superior Twin/Double Room Land View<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"859.01"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"859.01"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2DS:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDeDS_DR_AI_yaeapapaaaaaiajqtgwaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Superior Twin/Double Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"975.3"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"975.3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2DXM:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDeDXM_DR_AI_yaeapapaaaaaiayybigbiaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Deluxe Twin/Double Room Sea View<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"1164.64"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"1164.64"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2PX:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDePX_DR_AI_yaeapapaaaaaiaywwygeaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Deluxe Suite<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"1331.2"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"1331.2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2FZ:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDeFZ_DR_AI_yaeapapaaaaaiaywjqgtyaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Family Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"1397.51"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"1397.51"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2PI:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDePI_DR_AI_yaeapapaaaaaiayiyqgywaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Suite<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"1417.13"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"1417.13"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT001D2PHM:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqawdijwaAYTppyDePHM_DR_AI_yaeapapaaaaaiaytyigpdaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Penthouse Suite Sea View<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"1514.08"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"1514.08"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Room_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"18800"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Kahya Hotel<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>4 Stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>(AI)<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Child_Age</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">Child_Age</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Country</span>&gt;</span>Turkey<span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Antalya<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span>&gt;</span>Alanya<span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Image</span>&gt;</span>https://images.youtravel.com/photos/get_hotel_photo.aspx?id=3244967_3C43F7CFF89D9CA9713884C3511E30C4327F6072F8518FDFC18EFAF999D49B50<span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Desc</span>&gt;</span>&lt;![CDATA[directly at the beach, only separated by the coastal road; beach details: sandy/]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Room_1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Passengers</span> <span class="hljs-attr">Adults</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">Children</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Infants</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Passengers</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"GZP0005GDM:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqayddppaGZPppptGDM_DR_AI_yaeapapaaaaaiawptgyjaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>EconomyTwin/Double Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"305.19"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"305.19"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"GZP0005GDZL:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqayddppaGZPppptGDZL_DR_AI_yaeapapaaaaaiawwpgebaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Twin/Double Room Land View<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"330.26"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"330.26"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"GZP0005GDZK:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqayddppaGZPppptGDZK_DR_AI_yaeapapaaaaaiawtdgwwaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Twin/Double Room Side Sea View<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"358.33"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"358.33"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Room_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"12617"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Nirvana Lagoon Villas Suites <span class="hljs-symbol">&amp;amp;</span>amp; Spa<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>5 Stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>(AI)<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Child_Age</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">Child_Age</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Country</span>&gt;</span>Turkey<span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Antalya<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span>&gt;</span>Kemer<span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Image</span>&gt;</span>https://images.youtravel.com/photos/get_hotel_photo.aspx?id=3245171_E2E8C052826C40279EBBE1E07EC16B0999C31778EC1C21E9E56926512DA8B1B2<span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Desc</span>&gt;</span>&lt;![CDATA[directly at the beach; beach details: private sandy/shingle beach; beach informa]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Room_1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Passengers</span> <span class="hljs-attr">Adults</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">Children</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Infants</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Passengers</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT004PUDZ:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqayebyqaAYTppiPUDZ_DR_AI_yaeapapaaaaaiaitybgttaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Twin/Double Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"4516.55"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"4516.55"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT004PUDS:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqayebyqaAYTppiPUDS_DR_AI_yaeapapaaaaaiaitybgttaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Superior Twin/Double Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"4516.55"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"4516.55"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"AYT004PUFZ:DR:AI:1"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"epepyypeaepepyypjaqayebyqaAYTppiPUFZ_DR_AI_yaeapapaaaaaiaitybgttaa"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Family Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"4516.55"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"4516.55"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Room_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">session</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <hr>
+            <p><strong>Request Parameters</strong></p>
             <table>
                <thead>
                   <tr>
-                     <th>Parameter</th>
-                     <th>Default</th>
-                     <th>Description</th>
+                     <th>Field</th>
+                     <th>Meaning</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td>include_cats</td>
-                     <td>false</td>
-                     <td>If set to true, the result will also include cats.</td>
+                     <td>DSTN</td>
+                     <td>Destination ISO code</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
                   </tr>
                   <tr>
-                     <td>available</td>
-                     <td>true</td>
-                     <td>If set to false, the result will include kittens that have already been adopted.</td>
+                     <td>HID</td>
+                     <td>Hotel ID</td>
+                     <td>Numeric</td>
+                     <td>Multiple seperated by comma</td>
+                     <td>Maximum of 15 Digits per ID</td>
+                  </tr>
+                  <tr>
+                     <td>RSRT</td>
+                     <td>Resort ID</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Checkin_Date</td>
+                     <td>Check-in date</td>
+                     <td>Date</td>
+                     <td>dd/mm/yyyy</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Nights</td>
+                     <td>Number of nights</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of nights is 99</td>
+                  </tr>
+                  <tr>
+                     <td>Rooms</td>
+                     <td>Number of rooms</td>
+                     <td>Numeric</td>
+                     <td>Maximum number of rooms is 3</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>ADLTS_1</td>
+                     <td>Number of adults in 1st room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of adults per room is 6</td>
+                  </tr>
+                  <tr>
+                     <td>CHILD_1</td>
+                     <td>Number of children in 1st room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of children per room is 4</td>
+                  </tr>
+                  <tr>
+                     <td>ADLTS_2</td>
+                     <td>Number of adults in 2nd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of adults per room is 6</td>
+                  </tr>
+                  <tr>
+                     <td>CHILD_2</td>
+                     <td>Number of children in 2nd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of children per room is 4</td>
+                  </tr>
+                  <tr>
+                     <td>ADLTS_3</td>
+                     <td>Number of adults in 3rd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of adults per room is 6</td>
+                  </tr>
+                  <tr>
+                     <td>CHILD_3</td>
+                     <td>Number of children in 3rd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Maximum number of children per room is 4</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C1</td>
+                     <td>Age for the 1st child in the 1st Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C2</td>
+                     <td>Age for the 2nd child in the 1st Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C3</td>
+                     <td>Age for the 3rd child in the 1st Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C4</td>
+                     <td>Age for the 4th child in the 1st Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C1</td>
+                     <td>Age for the 1st child in the 2nd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C2</td>
+                     <td>Age for the 2nd child in the 2nd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C3</td>
+                     <td>Age for the 3rd child in the 2nd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C4</td>
+                     <td>Age for the 4th child in the 2nd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C1</td>
+                     <td>Age for the 1st child in the 3rd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C2</td>
+                     <td>Age for the 2nd child in the 3rd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C3</td>
+                     <td>Age for the 3rd child in the 3rd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C4</td>
+                     <td>Age for the 4th child in the 3rd Room</td>
+                     <td>Numeric</td>
+                     <td>2-14 Child (-1 or 1 for Infant)</td>
+                     <td>2-14 for child. If child is &lt; 2. Then apply as infant</td>
+                  </tr>
+                  <tr>
+                     <td>BT</td>
+                     <td>All board categories</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_RO</td>
+                     <td>Room only category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_SC</td>
+                     <td>Self catering category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_BB</td>
+                     <td>Bed &amp; breakfast category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_HB</td>
+                     <td>Half board category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_FB</td>
+                     <td>Full board category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_AI</td>
+                     <td>All inclusive category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>BT_VILLA</td>
+                     <td>Villa category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of board categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>StarCatAll</td>
+                     <td>All youtravel.com star categories</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of star categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>StarCat1</td>
+                     <td>Youtravel.com 1 star category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of star categories can be used</td>
+                  </tr>
+                  <tr>
+                     <td>StarCat2</td>
+                     <td>Youtravel.com 2 stars category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of star categories can be used (1*and 2* hotels will be shown as well with the 2*)</td>
+                  </tr>
+                  <tr>
+                     <td>StarCat3</td>
+                     <td>Youtravel.com 3 stars category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of star categories can be used (2*and 3* hotels will be shown as well with the 3*)</td>
+                  </tr>
+                  <tr>
+                     <td>StarCat4</td>
+                     <td>Youtravel.com 4 stars category</td>
+                     <td>Numeric</td>
+                     <td>1</td>
+                     <td>All combinations of star categories can be used (4*and 5* hotels will be shown as well with the 5*)</td>
+                  </tr>
+                  <tr>
+                     <td>LangID</td>
+                     <td>Language</td>
+                     <td>String(2)</td>
+                     <td>EN, IT,GE,FR,GR</td>
+                     <td>Supported Languages <br>EN: English <br> IT: Italian<br>GE: German<br>FR: French<br>GR: Greek</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td></td>
+                     <td>String(15)</td>
+                     <td>Account info</td>
+                     <td>Max 15 alphanumeric Digits</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td></td>
+                     <td>String(10)</td>
+                     <td>Account</td>
+                     <td>Max 10 alphanumeric Digits</td>
                   </tr>
                </tbody>
             </table>
-            <aside class=success> Remember — a happy kitten is an authenticated kitten! </aside>
-            <h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-            <pre class="highlight ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'kittn'</span>
-
-api = Kittn::APIClient.authorize!(<span class="hljs-string">'meowmeowmeow'</span>)
-api.kittens.get(<span class="hljs-number">2</span>)</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> kittn
-
-api = kittn.authorize(<span class="hljs-string">'meowmeowmeow'</span>)
-api.kittens.get(<span class="hljs-number">2</span>)</code></pre><pre class="highlight bash"><code>curl <span class="hljs-string">"https://example.com/api/kittens/2"</span>
-  -H <span class="hljs-string">"Authorization: meowmeowmeow"</span></code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">const</span> kittn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'kittn'</span>);
-
-<span class="hljs-keyword">let</span> api = kittn.authorize(<span class="hljs-string">'meowmeowmeow'</span>);
-<span class="hljs-keyword">let</span> max = api.kittens.get(<span class="hljs-number">2</span>);</code></pre>
-            <blockquote>
-               <p>The above command returns JSON structured like this:</p>
-            </blockquote>
-            <pre class="highlight json"><code>{
-   <span class="hljs-attr">"id"</span>:         <span class="hljs-number">2</span>,
-   <span class="hljs-attr">"name"</span>:       <span class="hljs-string">"Max"</span>,
-   <span class="hljs-attr">"breed"</span>:      <span class="hljs-string">"unknown"</span>,
-   <span class="hljs-attr">"fluffiness"</span>: <span class="hljs-number">5</span>,
-   <span class="hljs-attr">"cuteness"</span>:   <span class="hljs-number">10</span>
-}</code></pre>
-            <p>This endpoint retrieves a specific kitten.</p>
-            <aside class=warning> Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code. </aside>
-            <h3 id="http-request-with-id">HTTP Request (with ID)</h3>
-            <p><code>GET https://example.com/kittens/&lt;ID&gt;</code></p>
-            <h3 id="url-parameters">URL Parameters</h3>
+            <h2 id="board-option-descriptions">Board option descriptions</h2>
+            <p>URL: <a href="http://www.youtravel.com/boardoptions_popup.asp/" target="_blank"><code>http://www.youtravel.com/boardoptions_popup.asp</code></a></p>
+            <p><strong>Deep Link</strong><br> Special search request criteria can be used to retrieve a deep link to the youtravel.com website from the XML feed.</p>
+            <style type="text/css">
+               ol {
+                  list-style-type: upper-alpha;
+               }
+            </style>
+            <ol>
+               <li>ShowLink=1 (Support for agent searches only B2B)</li>
+               <li>ShowLink=2 (Support for direct customers only B2C)</li>
+            </ol>
+            <h2 id="availability--prices-search-response">Availability &amp; prices search response</h2>
+            <p><strong>Response parameters</strong></p>
             <table>
                <thead>
                   <tr>
-                     <th>Parameter</th>
-                     <th>Description</th>
+                     <th>Field</th>
+                     <th>Meaning</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td>ID</td>
-                     <td>The ID of the kitten to retrieve</td>
+                     <td>Session_ID</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Necessary to make the booking</td>
+                  </tr>
+                  <tr>
+                     <td>Success</td>
+                     <td></td>
+                     <td>Boolean</td>
+                     <td>True or false</td>
+                     <td>Clarifies if the search is successful</td>
+                  </tr>
+                  <tr>
+                     <td>Company</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>LangID</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Dstn</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>String Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Rsrt</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Rooms</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Nofn</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Checkin_Date</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Youtravel_Rating</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Board_Type</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Adlts_1</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Child_1</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Infant_1</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Adlts_2</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Child_2</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Infant_2</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Adlts_3</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Child_3</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Infant_3</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Search criteria value</td>
+                  </tr>
+                  <tr>
+                     <td>Currency</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_ID</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_Name</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Youtravel_Rating</td>
+                     <td></td>
+                     <td>String</td>
+                     <td>1, 1+, 2, 2+, 3, 3+, 4,4+, 5, 5+</td>
+                     <td>For Youtravel rating information visit <a href="http://www.youtravel.com/starrating.asp" target="_blank">http://www.youtravel.com/starrating.asp</a></td>
+                  </tr>
+                  <tr>
+                     <td>Official_Rating</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Rating given to property by local tourist board</td>
+                  </tr>
+                  <tr>
+                     <td>Board_Type</td>
+                     <td></td>
+                     <td>String</td>
+                     <td>RO,SC,BB,HB,FB,AI, VILLA</td>
+                     <td>RO : Room only <br>SC: Self catering <br>BB: Bed &amp; Breakfast <br> HB: Half Board <br> FB: Full Board</td>
+                  </tr>
+                  <tr>
+                     <td>Child_Age</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Between 2-14 years old</td>
+                  </tr>
+                  <tr>
+                     <td>Country</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Destination</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Resort</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Image</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Hotel thumbnail</td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_Desc</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Short hotel description up to 80 Characters</td>
+                  </tr>
+                  <tr>
+                     <td>Room_1<br>Room_2<br>Room_3</td>
+                     <td>GROUP<br>FIELDS</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Room Id</td>
+                     <td></td>
+                     <td></td>
+                     <td>Alphanumeric(30)</td>
+                     <td>Room identification number</td>
+                  </tr>
+                  <tr>
+                     <td>Refundable</td>
+                     <td></td>
+                     <td>String</td>
+                     <td>True or False</td>
+                     <td>true if Room is Refundable</td>
+                  </tr>
+                  <tr>
+                     <td>Passengers</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Number of Adults, Children and Infants in the room</td>
+                  </tr>
+                  <tr>
+                     <td>Type</td>
+                     <td></td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Room type and view room type</td>
+                  </tr>
+                  <tr>
+                     <td>Board</td>
+                     <td></td>
+                     <td>String</td>
+                     <td>RO, SC, BB, HB, FB, AI,FB-LC,FB-FE</td>
+                     <td>RO: Room only <br>SC: Self catering <br>BB: Bed &amp; Breakfast <br>HB: Half Board <br>FB: Full Board <br>AI: All Inclusive <br>FB-LE: Full Board with light excursions <br>FB-FE: Full Board with full excursions</td>
+                  </tr>
+                  <tr>
+                     <td>Rates</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Original rate: Rate before offer applies <br>Final rate: Rate after offer applies</td>
+                  </tr>
+                  <tr>
+                     <td>Offers</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td>0: Offer not applies <br> 1: Offer applies</td>
+                     <td>Lastminute_offer: Special discount price <br> Early_Booking_Discount: Discount for early bookings <br> Free_Stay: One or more nights free based on number of stays <br> Free_Transfer: Free transfer is included in the price <br> Gala_Meals: Special event meals included in price</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="show-board-type--light-standard-classic-premier">Show Board Type – (LIGHT), (STANDARD), (CLASSIC), (PREMIER)</h2>
+            <blockquote>
+               <p>Example request</p>
+            </blockquote>
+            <pre class="highlight "><code>URL/<span class="hljs-meta">index</span>.asp?Checkin_Date=24/09/2013<span class="hljs-variable">&amp;Username</span>=xmltestme<span class="hljs-variable">&amp;Password</span>=testme<span class="hljs-variable">&amp;Nights</span>=7<span class="hljs-variable">&amp;LangID</span>=EN<span class="hljs-variable">&amp;Rooms</span>=1<span class="hljs-variable">&amp;ADLTS_1</span>=2<span class="hljs-variable">&amp;Dstn</span>=RHO<span class="hljs-variable">&amp;Currency</span>=GBP<span class="hljs-variable">&amp;StarCatAll</span>=1<span class="hljs-variable">&amp;BT</span>=1<span class="hljs-variable">&amp;SBT</span>=1</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Search_Criteria</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Company</span>&gt;</span>XML Test Affiliate<span class="hljs-tag">&lt;/<span class="hljs-name">Company</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Dstn</span>&gt;</span>RHO<span class="hljs-tag">&lt;/<span class="hljs-name">Dstn</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Rsrt</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Rooms</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Rooms</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Nofn</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">Nofn</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Checkin_Date</span>&gt;</span>24/09/2013<span class="hljs-tag">&lt;/<span class="hljs-name">Checkin_Date</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>Allstarratings<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Adlts_1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">Adlts_1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Child_1</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Child_1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Infant_1</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Infant_1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Adlts_2</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Adlts_2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Child_2</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Child_2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Infant_2</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Infant_2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Adlts_3</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Adlts_3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Child_3</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Child_3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Infant_3</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">Infant_3</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Search_Criteria</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">session</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"1076622456192201324050110"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"9288"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Golf View Hotel<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>3 stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>(AI)<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Child_Age</span>&gt;</span>2 - 12<span class="hljs-tag">&lt;/<span class="hljs-name">Child_Age</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Country</span>&gt;</span>Greece<span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Rhodes<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span>&gt;</span>Afandou<span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Image</span>&gt;</span>http://images.youtravel.com/photos/9288/xml.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+            &lt;![CDATA[Built on a hill with a wonderful view of the sea and on the entrance of the
+town]]&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Room_1</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Passengers</span> <span class="hljs-attr">Infants</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Children</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Adults</span>=<span class="hljs-string">"2"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"255825"</span> <span class="hljs-attr">Refundable</span>= <span class="hljs-string">”true”</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Double/Twin Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">AI_Type</span>&gt;</span>LIGHT<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Type</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"243.04"</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"303.8"</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"1"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Room_1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span></code></pre>
+            <p>To receive the Board Type where more than one category of the same board exists submit “<strong>SBT=1</strong>” (show board type) <br>SBT=1 = True <br>SBT=0 = False <br>These categories only apply to All Inclusive (AI). <br>Only one <code>&lt;AI_TYPE&gt;</code> will be displayed per Room Id <a href="https://www.youtravel.com/explanation_ai.asp" target="_blank">https://www.youtravel.com/explanation_ai.asp</a></p>
+            <h1 id="property-sorting">Property sorting</h1>
+            <h2 id="suggested-property">Suggested property</h2>
+            <blockquote>
+               <p>Enable suggestions request parameter</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-attr">YTS</span>=<span class="hljs-number">1</span></code></pre>
+            <blockquote>
+               <p>Example request</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/webservices/index.asp?Checkin_Date=30/09/2013&amp;Username=xmltestme&amp;Password=testme&amp;Nights=7&amp;LangID=EN&amp;Rooms=2&amp;ADLTS_1=2&amp;ADLTS_2=1&amp;Dstn=TFS&amp;Currency=GBP&amp;StarCatAll=1&amp;BT=1&amp;YTS=1</code></pre>
+            <blockquote>
+               <p>Example response<br>
+                  <em>The result will appear with 1to 5. Please note it is possible to have more than 1 of the same priority in any response.</em></p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"2299"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Blue Sea Callao Garden<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>3 stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">YT_Suggested</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">YT_Suggested</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>(SC)(AI)<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Child_Age</span>&gt;</span>2 - 12<span class="hljs-tag">&lt;/<span class="hljs-name">Child_Age</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Country</span>&gt;</span>Canaries<span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Tenerife<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span>&gt;</span>Callao Salvaje<span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Image</span>&gt;</span>http://images.youtravel.com/photos/2299/xml.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Blue</span> <span class="hljs-attr">Sea</span> <span class="hljs-attr">Callao</span> <span class="hljs-attr">Garden</span> <span class="hljs-attr">is</span> <span class="hljs-attr">a</span> <span class="hljs-attr">hotel</span> <span class="hljs-attr">complex</span> <span class="hljs-attr">situated</span> <span class="hljs-attr">in</span> <span class="hljs-attr">the</span> <span class="hljs-attr">southeast</span> <span class="hljs-attr">of</span> <span class="hljs-attr">the</span>]]&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Room_1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Passengers</span> <span class="hljs-attr">Adults</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">Children</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Infants</span>=<span class="hljs-string">"0"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"202550"</span> <span class="hljs-attr">Refundable</span>= <span class="hljs-string">”True”</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>1 Bedroom Apartment Garden View<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>SC<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"223.81"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"193.44"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"202551"</span> <span class="hljs-attr">Refundable</span>= <span class="hljs-string">”True”</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>1 Bedroom Apartment Standard All Inclusive<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"432.44"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"432.44"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Room_1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span></code></pre>
+            <p>YouTravel can suggest the best properties to display first based on pricing, availability and over customer rating of a property.</p>
+            <h2 id="show-rooms-remaining">Show Rooms Remaining</h2>
+            <blockquote>
+               <p>Remaining rooms request Parameter</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-attr">SRR</span>=<span class="hljs-number">1</span></code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-tag">&lt;<span class="hljs-name">Passengers</span> <span class="hljs-attr">Infants</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Children</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Adults</span>=<span class="hljs-string">"2"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"366105"</span> <span class="hljs-attr">Refundable</span>= <span class="hljs-string">”True”</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Standard Double/Twin Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>BB<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"183.45"</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"183.45"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Rooms_remaining</span>=<span class="hljs-string">"2"</span> /&gt;</span></code></pre>
+            <p>To show rooms remaining this is a requestable element and will appear as an additional attribute shown in Offers . Rooms reaming will show a Min 1 and max 9 for any given roomtype.</p>
+            <h2 id="sort-results-by">Sort Results by</h2>
+            <blockquote>
+               <p>Sort by highest price first :</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-attr">SBE</span>=<span class="hljs-number">1</span></code></pre>
+            <blockquote>
+               <p>Sort by lowest price first :</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-attr">SBC</span>=<span class="hljs-number">1</span></code></pre>
+            <p>Parameters for sorting results</p>
+            <h1 id="destination-and-resort-information-request">Destination and resort information request</h1>
+            <blockquote>
+               <p>Request to URL/get_destinations.asp</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/get_destinations.asp?LangID=EN&amp;Username=xmltestme&amp;Password=testme</code></pre>
+            <blockquote>
+               <p>Example of the destinations &amp; resort information response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version= “1.0” encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Country</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"5"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Canaries"</span> <span class="hljs-attr">Code</span>=<span class="hljs-string">"ES"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"37"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Fuerteventura"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ISO_Codes</span> <span class="hljs-attr">Code_3</span>=<span class="hljs-string">""</span> <span class="hljs-attr">Code_2</span>=<span class="hljs-string">""</span> <span class="hljs-attr">Code_1</span>=<span class="hljs-string">"FUE"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"138"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Antigua<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"136"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Caleta de Fuste<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"92"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Corralejo<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"140"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Costa Calma<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"139"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>El Cotillo<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"137"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Las Playitas<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"545"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Nuevo Horizonte-El Castillo<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"359"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Pajara<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"285"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Playa Barca<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"544"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Playa de Esquinzo<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"141"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Playa Jandia Morro Jable<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span></code></pre>
+            <p><strong><em>Request parameters</em></strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>String(15)</td>
+                     <td></td>
+                     <td>Account info</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>String(10)</td>
+                     <td></td>
+                     <td>Account info</td>
+                  </tr>
+               </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <p><strong><em>Response parameters</em></strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Success</td>
+                     <td>Boolean</td>
+                     <td>True or False</td>
+                     <td>Clarifies if the request is successful</td>
+                  </tr>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>Country_ID</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Country_Code</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Destination</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>ISO_Codes</td>
+                     <td>String</td>
+                     <td>ISO</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Resort_ID</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Resort_Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h1 id="hotel-detailed-description">Hotel Detailed Description</h1>
+            <blockquote>
+               <p>Request to URL/get_hoteldetails.asp</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/get_hoteldetails.asp?LangID=EN&amp;HID=1&amp;Username=xmltestme&amp;Password=testme</code></pre>
+            <blockquote>
+               <p>Avalilability Response<br>
+                  <em>As opposed to the Room type name being displayed as shown in the availability response.</em></p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Double/Twin Room Landview<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Double Twin Room Landview"</span>&gt;</span></code></pre>
+            <blockquote>
+               <p>Hotel Description Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Emilia Romagna - Riccione<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">HID</span>&gt;</span>9053<span class="hljs-tag">&lt;/<span class="hljs-name">HID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Promenade Hotel"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>4 stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span>&gt;</span>(BB)(AI))<span class="hljs-tag">&lt;/<span class="hljs-name">Board_Type</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+            &lt;![CDATA[Located only 10 metres from sandy beach and only a few steps from Viale
+Ceccarini; the most exclusive shopping area of Riccione, The Promenade Hotel
+offers boutique accommodation facing the Adriatic Sea. The hotel features an indoor
+pool with heated seawater and whirlpool corner. Other facilities include SPA with
+sauna, Turkish bath, massage and beauty treatment, free Wi-Fi just to name a few.
+The hotel also features a restaurant which serves buffet breakfast and offers a choice
+among 3 menus for lunch and dinner. The bar is 24hrs open. The rooms are
+equipped with Wi-Fi, Minibar and a safety box. The hotel is conveniently located and
+is only 1.5 km away from train station while 5 km from airport.]]&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Desc</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Photos</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/xml.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/pool11.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/pool2.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/reception.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/exterior.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/lobby.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/main.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/room1.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/room2.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/restaurnat.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/restaurnt1.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/lobby1.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://images.youtravel.com/photos/9053/indoor Pool.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Photos</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Facilities</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Baby cot(on request)<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Bar(s)<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Beauty salon(extra charge)<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Massage (extra charge)<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Restaurant(s)<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Sauna<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Small Pets Allowed<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>SPA<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Swimming Pool Indoor - Heated<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Turkish Bath<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Wi Fi Internet Connection<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Facilities</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Room_Types</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Twin Room Side Sea View (A )"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Air Conditioning<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Bathroom with shower<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Mini Bar<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Safety Box<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Sat TV<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Telephone<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Terrace Balcony<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Facility</span>&gt;</span>Wi Fi Internet Connection (Free of Charge)<span class="hljs-tag">&lt;/<span class="hljs-name">Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Room_Types</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AI_Type</span>&gt;</span>STANDARD<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Type</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AI_Desc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">MEALS</span> <span class="hljs-attr">Breakfast</span> <span class="hljs-attr">buffet</span> (<span class="hljs-attr">Crown</span> <span class="hljs-attr">restaurant:</span> <span class="hljs-attr">07:00-10:00</span>) <span class="hljs-attr">Lunch</span> <span class="hljs-attr">buffet</span> (<span class="hljs-attr">Crown</span> <span class="hljs-attr">Restaurant:12:30-15:00</span>) <span class="hljs-attr">Dinner</span> <span class="hljs-attr">buffet</span> (<span class="hljs-attr">Crown</span> <span class="hljs-attr">restaurant:</span> <span class="hljs-attr">18:00-21:00</span> <span class="hljs-attr">winter</span>)&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">AI_Desc</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facilities</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facility</span>&gt;</span>Aerobic<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facility</span>&gt;</span>Animation<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facility</span>&gt;</span>Aqua Aerobics<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facility</span>&gt;</span>Archery<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facility</span>&gt;</span>Badminton<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facility</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AI_Facility</span>&gt;</span>Basketball<span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facility</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">AI_Facilities</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Erratas</span>&gt;</span>
+            &lt;![CDATA[Please Note Due to recent Tourist Tax Regulations all bookings
+might be subjected to an additional charge (fixed per destination/hotel) paid
+locally at the Hotel. City tax 2.50 per person / per day.(Tax is to pay for
+Maximum 7 nights. Children till 13.9 years dont have to pay for tax.) ]]&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Erratas</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p>On the get_hoteldetails RS the data fetched passes from an extra filtering (escapeHTML) where characters are transformed before being rendered; these are: <br><code>&#39;&lt;&#39; to &#39;&amp;lt&#39;</code>
+               <br><code>&#39;&gt;&#39; to &#39;&amp;gt&#39;</code>
+               <br><code>&#39;&amp;&#39; to &#39;and&#39;</code>
+               <br><code>&#39;&#39;&#39;&#39; to &#39;&#39;</code>
+               <br><code>&#39;/&#39; to &#39; &#39;</code>
+               <br><code>&#39;\&#39; to &#39; &#39;</code>
+               <br><code>&#39;&#39; to &#39;&#39;</code></p>
+            <p><strong><em>Request parameters</em></strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>HID</td>
+                     <td>Numeric(15)</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>String(15)</td>
+                     <td></td>
+                     <td>Account info</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>String(10)</td>
+                     <td></td>
+                     <td>Account info</td>
+                  </tr>
+               </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <p><strong><em>Response parameters</em></strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Success</td>
+                     <td>Boolean</td>
+                     <td>True or False</td>
+                     <td>Clarifies if the request is successful</td>
+                  </tr>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>HID</td>
+                     <td>Numeric(15)</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Destination</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Destination and resort</td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Youtravel_Rating</td>
+                     <td>String</td>
+                     <td>1, 2, 2+, 3, 3+, 4,4+, 5,5+</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Official_Rating</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Board_Type</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_Desc</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Detailed hotel description</td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_Photos</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Room_Types</td>
+                     <td>GROUP FIELD</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Room_Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Facility</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>AI_Type</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>LIGHT, STANDARD, CLASSIC, PREMIER</td>
+                  </tr>
+                  <tr>
+                     <td>AI_Desc</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Detailed board description</td>
+                  </tr>
+                  <tr>
+                     <td>AI_Facilities</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Erratas</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="additional-information-in-get_hoteldetailsasp">Additional information in get_hoteldetails.asp</h2>
+            <blockquote>
+               <p>Request parameter in URL/get_hoteldetails.asp</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-attr">SHA</span>=<span class="hljs-number">1</span></code></pre>
+            <blockquote>
+               <p>Request example</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/get_hoteldetails.asp?LangID=EN&amp;HID=2970&amp;Username=xmltestme&amp;Password=testme&amp;sha=1</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Sharm El Sheikh - Sharm El Sheikh<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">HID</span>&gt;</span>2970<span class="hljs-tag">&lt;/<span class="hljs-name">HID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Savoy Hotel"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>5 stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Address</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Address</span>&gt;</span>Sharm White Knight Beach<span class="hljs-tag">&lt;/<span class="hljs-name">Address</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Post_Code</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">City</span>&gt;</span>Sharm El Sheikh<span class="hljs-tag">&lt;/<span class="hljs-name">City</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Phone</span>&gt;</span>0020 693602500<span class="hljs-tag">&lt;/<span class="hljs-name">Phone</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Fax</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Address</span>&gt;</span></code></pre>
+            <h2 id="maximum-and-minimum-child-age-in-individual-hotel">Maximum and minimum child age in individual hotel</h2>
+            <blockquote>
+               <p>Request parameter in URL/get_hoteldetails.asp</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-attr">SCA</span>=<span class="hljs-number">1</span></code></pre>
+            <blockquote>
+               <p>Request example</p>
+            </blockquote>
+            <pre class="highlight "><code>URL/get_hoteldetails.asp?LangID=EN<span class="hljs-variable">&amp;</span>HID=<span class="hljs-number">2970</span><span class="hljs-variable">&amp;</span>Username=xmltestme<span class="hljs-variable">&amp;password</span>=testme<span class="hljs-variable">&amp;sca</span>=<span class="hljs-number">1</span></code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span>&gt;</span>Sharm El Sheikh - Sharm El Sheikh<span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">HID</span>&gt;</span>2970<span class="hljs-tag">&lt;/<span class="hljs-name">HID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Savoy Hotel"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Youtravel_Rating</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">Youtravel_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Official_Rating</span>&gt;</span>5 stars<span class="hljs-tag">&lt;/<span class="hljs-name">Official_Rating</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Board_Type</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">MinChildAge</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">MinChildAge</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">MaxChildAge</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-name">MaxChildAge</span>&gt;</span></code></pre>
+            <h1 id="prebook">Prebook</h1>
+            <blockquote>
+               <p>Request</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/webservices/index.asp?Checkin_Date=30/09/2013&amp;Username=xmltestme&amp;Password=testme&amp;Nights=7&amp;LangID=EN&amp;Rooms=2&amp;ADLTS_1=2&amp;ADLTS_2=1&amp;Dstn=TFS&amp;Currency=GBP&amp;StarCatAll=1&amp;BT=1&amp;YTS=1&amp;CanxPol=1</code></pre>
+            <blockquote>
+               <p>Room search response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"846166"</span> <span class="hljs-attr">Refundable</span>=<span class="hljs-string">"true"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CanxPolicy</span> <span class="hljs-attr">token</span>=<span class="hljs-string">"dibybbabbegpiaiaepyqpqpy"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Type</span>&gt;</span>Twin Room<span class="hljs-tag">&lt;/<span class="hljs-name">Type</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Board</span>&gt;</span>BB<span class="hljs-tag">&lt;/<span class="hljs-name">Board</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Rates</span> <span class="hljs-attr">Original_Rate</span>=<span class="hljs-string">"662.04"</span> <span class="hljs-attr">Final_Rate</span>=<span class="hljs-string">"662.04"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Rates</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Lastminute_Offer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Transfer</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Gala_Meals</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Offers</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span></code></pre>
+            <blockquote>
+               <p>CanxPolicy token may be used during the prebook stage to retrieve cancellation rules<br> Get cancellation policy response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Room</span>&gt;</span>724129<span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Policies</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Policy</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">FromDate</span>&gt;</span>22/12/2016<span class="hljs-tag">&lt;/<span class="hljs-name">FromDate</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Fees</span>&gt;</span>30.00<span class="hljs-tag">&lt;/<span class="hljs-name">Fees</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Policy</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Policy</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">FromDate</span>&gt;</span>12/12/2016<span class="hljs-tag">&lt;/<span class="hljs-name">FromDate</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Fees</span>&gt;</span>20.00<span class="hljs-tag">&lt;/<span class="hljs-name">Fees</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Policy</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Policy</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">FromDate</span>&gt;</span>02/12/2016<span class="hljs-tag">&lt;/<span class="hljs-name">FromDate</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Fees</span>&gt;</span>10.00<span class="hljs-tag">&lt;/<span class="hljs-name">Fees</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Policy</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Policies</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p>Before proceeding to the booking stage, you may wish to retrieve the cancellation terms for a given hotel room before committing. This is an optional step in the search and book workflow.</p>
+            <p>When sending a search request as detailed in section 3.0, you may add an additional parameter to the query string to emit cancellation tokens:</p>
+            <h1 id="hotel-booking">Hotel booking</h1>
+            <blockquote>
+               <p>Request to URL/bookings.asp</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/bookings.asp?LangID=EN&amp;HID=1572&amp;Username=xmltestme&amp;Password=testme&amp;....</code></pre>
+            <blockquote>
+               <p>Hotel booking response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version= “1.0” encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Booking_ref</span>&gt;</span>10611121134459624<span class="hljs-tag">&lt;/<span class="hljs-name">Booking_ref</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Voucher_Url</span>&gt;</span>http://www.youtravel.com/voucher.asp?ID=10611121134459624<span class="hljs-tag">&lt;/<span class="hljs-name">Voucher_Url</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Field</th>
+                     <th>Meaning</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Session_ID</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Provided by the search response</td>
+                  </tr>
+                  <tr>
+                     <td>Checkin_Date</td>
+                     <td>Check-in date</td>
+                     <td>Date</td>
+                     <td>dd/mm/yyyy</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Nights</td>
+                     <td>Number of nights</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of nights is 40</td>
+                  </tr>
+                  <tr>
+                     <td>Rooms</td>
+                     <td>Number of rooms</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of rooms is 3</td>
+                  </tr>
+                  <tr>
+                     <td>ADLTS_1</td>
+                     <td>Number of adults in 1st room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of Adults per room is 6</td>
+                  </tr>
+                  <tr>
+                     <td>CHILD_1</td>
+                     <td>Number of children in 1st room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of children per room is 4</td>
+                  </tr>
+                  <tr>
+                     <td>ADLTS_2</td>
+                     <td>Number of adults in 2nd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of Adults per room is 6</td>
+                  </tr>
+                  <tr>
+                     <td>CHILD_2</td>
+                     <td>Number of children in 2nd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of children per room is 4</td>
+                  </tr>
+                  <tr>
+                     <td>ADLTS_3</td>
+                     <td>Number of adults in 3rd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of Adults per room is 6</td>
+                  </tr>
+                  <tr>
+                     <td>CHILD_3</td>
+                     <td>Number of children in 3rd room</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max no. of children per room is 4</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C1</td>
+                     <td>Age for the 1st child in the 1st room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C2</td>
+                     <td>Age for the 2nd child in the 1st room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C3</td>
+                     <td>Age for the 3rd child in the 1st room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR1C4</td>
+                     <td>Age for the 4th child in the 1st room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C1</td>
+                     <td>Age for the 1st child in the 2nd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C2</td>
+                     <td>Age for the 2nd child in the 2nd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C3</td>
+                     <td>Age for the 3rd child in the 2nd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR2C4</td>
+                     <td>Age for the 4th child in the 2nd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C1</td>
+                     <td>Age for the 1st child in the 3rd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C2</td>
+                     <td>Age for the 2nd child in the 3rd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C3</td>
+                     <td>Age for the 3rd child in the 3rd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>ChildAgeR3C4</td>
+                     <td>Age for the 4th child in the 3rd room</td>
+                     <td>Numeric</td>
+                     <td>2-14 for child -1 or 1 for infant</td>
+                     <td>2-14 for child. If child is &lt; 2. Then counts as infant</td>
+                  </tr>
+                  <tr>
+                     <td>LangID</td>
+                     <td>Language</td>
+                     <td>String(2)</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>HID</td>
+                     <td>Hotel ID</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Max 15 Numeric Digits</td>
+                  </tr>
+                  <tr>
+                     <td>RID</td>
+                     <td>Room id for the 1st room</td>
+                     <td>Alphanumeric</td>
+                     <td></td>
+                     <td>Max 30 alphanumeric characters</td>
+                  </tr>
+                  <tr>
+                     <td>RID_2</td>
+                     <td>Room id for the 2nd room</td>
+                     <td>Alphanumeric</td>
+                     <td></td>
+                     <td>Max 30 alphanumeric characters</td>
+                  </tr>
+                  <tr>
+                     <td>RID_3</td>
+                     <td>Room id for the 3rd room</td>
+                     <td>Alphanumeric</td>
+                     <td></td>
+                     <td>Max 30 alphanumeric characters</td>
+                  </tr>
+                  <tr>
+                     <td>Customer_title</td>
+                     <td>Customer title</td>
+                     <td>String(10)</td>
+                     <td></td>
+                     <td>Max 10 characters</td>
+                  </tr>
+                  <tr>
+                     <td>Customer_firstname</td>
+                     <td>Customer first name</td>
+                     <td>String (40)</td>
+                     <td></td>
+                     <td>Max 40 characters</td>
+                  </tr>
+                  <tr>
+                     <td>Customer_lastname</td>
+                     <td>Customer last name</td>
+                     <td>String(40)</td>
+                     <td></td>
+                     <td>Max 40 characters</td>
+                  </tr>
+                  <tr>
+                     <td>Room1_Rate</td>
+                     <td>Final Rate for the 1st room as provided in the feed</td>
+                     <td>Numeric</td>
+                     <td>Up to 2 decimals</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Room2_Rate</td>
+                     <td>Final Rate for the 2nd room as provided in the feed</td>
+                     <td>Numeric</td>
+                     <td>Up to 2 decimals</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Room3_Rate</td>
+                     <td>Final Rate for the 3rd room as provided in the feed</td>
+                     <td>Numeric</td>
+                     <td>Up to 2 decimals</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Email</td>
+                     <td>Email address that will receive the hotel voucher</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Arr_Date</td>
+                     <td>Customer flight arrival date Date</td>
+                     <td>Date</td>
+                     <td>dd/mm/yyyy</td>
+                     <td>Optional only if no flight info to send</td>
+                  </tr>
+                  <tr>
+                     <td>Arr_DepTime</td>
+                     <td>Customer flight arrival time</td>
+                     <td>Numeric</td>
+                     <td>hhmm</td>
+                     <td>Optional only if no flight info to send</td>
+                  </tr>
+                  <tr>
+                     <td>Arr_flight_from</td>
+                     <td>Departing airport</td>
+                     <td>String</td>
+                     <td>ISO</td>
+                     <td>Max 3 Characters - Optional</td>
+                  </tr>
+                  <tr>
+                     <td>Arr_flight_to</td>
+                     <td>Arrival airport</td>
+                     <td>String</td>
+                     <td>ISO</td>
+                     <td>Max 3 Characters - Optional</td>
+                  </tr>
+                  <tr>
+                     <td>Arr_Flight_Num</td>
+                     <td>Arrival flight number</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Optional only if no flight info to send</td>
+                  </tr>
+                  <tr>
+                     <td>Dep_Date</td>
+                     <td>Customer flight departure date</td>
+                     <td>Date</td>
+                     <td>dd/mm/yyyy</td>
+                     <td>Optional only if no flight info to send</td>
+                  </tr>
+                  <tr>
+                     <td>Dep_DepTime</td>
+                     <td>Customer flight departure time</td>
+                     <td>Numeric</td>
+                     <td>hhmm</td>
+                     <td>Optional only if no flight info to send</td>
+                  </tr>
+                  <tr>
+                     <td>Dep_Flight_From</td>
+                     <td>Departure airport</td>
+                     <td>String</td>
+                     <td>ISO</td>
+                     <td>Max 3 Characters - Optional</td>
+                  </tr>
+                  <tr>
+                     <td>Dep_Flight_To</td>
+                     <td>Arrival airport</td>
+                     <td>String</td>
+                     <td>ISO</td>
+                     <td>Max 3 Characters - Optional</td>
+                  </tr>
+                  <tr>
+                     <td>Dep_Flight_Num</td>
+                     <td>Departure flight number</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Optional only if no flight info to send</td>
+                  </tr>
+                  <tr>
+                     <td>Requests</td>
+                     <td>Special Request</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Max 250 characters - optional</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>Account information</td>
+                     <td>String</td>
+                     <td>Max 15 alphanumeric digits</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>Account information</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Max 10 Alpa Numeric digits</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h1 id="cancelation">Cancelation</h1>
+            <h2 id="cancel-via-web-service">Cancel via web service</h2>
+            <p>The cancellation message is used to retrieve cancellation fees for the given booking. This must take place in 2 steps.</p>
+            <ol>
+               <li>Request cancellation fees for specific booking</li>
+               <li>Finalizing cancellation.</li>
+            </ol>
+            <h2 id="cancellation-fees-request">Cancellation fees request</h2>
+            <blockquote>
+               <p>Request URL</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-built_in">URL</span>/get_canx_fees.asp</code></pre>
+            <blockquote>
+               <p>Request example</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/get_canx_fees.asp?Booking_ref=10231122311233112&amp;Username=xmltestme&amp;password=testme</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Booking_ref</span>&gt;</span>10611091035573584<span class="hljs-tag">&lt;/<span class="hljs-name">Booking_ref</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Fees</span>&gt;</span>10.00<span class="hljs-tag">&lt;/<span class="hljs-name">Fees</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <aside class="notice"> This step will not cancel the booking; it will only display cancellation charge </aside>
+            <p><strong>Request Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Booking_ref</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td>Booking reference</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>Account information</td>
+                     <td>String(15)</td>
+                     <td>Max 15 alphanumeric Digits</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>Account information</td>
+                     <td>String(10)</td>
+                     <td>Max 10 alphanumeric Digits</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="finalize-cancellation-request">Finalize Cancellation Request</h2>
+            <blockquote>
+               <p>Request URL</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-built_in">URL</span>/<span class="hljs-built_in">cancel</span>.asp</code></pre>
+            <blockquote>
+               <p>Request example</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/cancel.asp?Booking_ref=10231122311233112&amp;Username=xmltestme&amp;password=testme</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Booking_ref</span>&gt;</span>10611091035573584<span class="hljs-tag">&lt;/<span class="hljs-name">Booking_ref</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Request Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Booking_ref</td>
+                     <td></td>
+                     <td>Numeric</td>
+                     <td>Booking reference</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>Account information</td>
+                     <td>String(15)</td>
+                     <td>Max 15 alphanumeric Digits</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>Account information</td>
+                     <td>String(10)</td>
+                     <td>Max 10 alphanumeric Digits</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h1 id="hotel-descriptions">Hotel descriptions</h1>
+            <h2 id="hotel---fill-descriptive-text">Hotel - Fill descriptive text</h2>
+            <blockquote>
+               <p>Request URL</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-built_in">URL</span>/get_hotel_descriptions.asp</code></pre>
+            <blockquote>
+               <p>Request example</p>
+            </blockquote>
+            <pre class="highlight xml"><code>URL/get_hotel_descriptions.asp?LangID=EN&amp;Username=xmltestme&amp;password=testme</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Salmakis Beach Resort and Spa"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Description</span>&gt;</span>
+            &lt;![CDATA[
+The Salmakis Beach Resort and Spa is set in the quieter part of Bodrum Bay and
+boasts impressive and varied Mediterranean architecture. Situated above a
+wonderful beach it also offers spectacular views across the bay to the harbor and
+castle of Bodrum. The resort includes 2 in-house restaurants, a 1500 m2 full service
+spa center, among other facilities and features. It is located only 1 km from the centre
+of Bodrum and 35 km from the Bodrum-Milas Airport.]]&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Description</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Orient Palace"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Description</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">null</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Description</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Request Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String(2)</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>Account Information</td>
+                     <td>String(15)</td>
+                     <td>Max 15 alphanumeric digits</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>Account Information</td>
+                     <td>String(10)</td>
+                     <td>Max 10 alphanumeric digits</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="hotel-list-by-destination">Hotel List by Destination</h2>
+            <blockquote>
+               <p>Request URL</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-built_in">URL</span>/get_hotel_list.asp</code></pre>
+            <blockquote>
+               <p>Request example</p>
+            </blockquote>
+            <pre class="highlight "><code>URL/get_hotel_list.asp?LangID=EN<span class="hljs-variable">&amp;username</span>=xmltestme<span class="hljs-variable">&amp;password</span>=testme</code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LangID</span>&gt;</span>EN<span class="hljs-tag">&lt;/<span class="hljs-name">LangID</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Country</span> <span class="hljs-attr">Code</span>=<span class="hljs-string">"DZ"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Algeria"</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"79"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Algiers"</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"2989"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ISO_Codes</span> <span class="hljs-attr">Code_1</span>=<span class="hljs-string">"ALG"</span> <span class="hljs-attr">Code_2</span>=<span class="hljs-string">""</span> <span class="hljs-attr">Code_3</span>=<span class="hljs-string">""</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"827"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Algiers<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_ID</span>&gt;</span>2200001202004<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_ID</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Hilton Alger hotel<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Mapping</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Latitude</span>&gt;</span>36.738<span class="hljs-tag">&lt;/<span class="hljs-name">Latitude</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Longitude</span>&gt;</span>3.1564<span class="hljs-tag">&lt;/<span class="hljs-name">Longitude</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">Mapping</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Country</span> <span class="hljs-attr">Code</span>=<span class="hljs-string">"AD"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Andorra"</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"80"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Destination</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Andorra"</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"2760"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ISO_Codes</span> <span class="hljs-attr">Code_1</span>=<span class="hljs-string">"ALV"</span> <span class="hljs-attr">Code_2</span>=<span class="hljs-string">""</span> <span class="hljs-attr">Code_3</span>=<span class="hljs-string">""</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Resort</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"828"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Resort_Name</span>&gt;</span>Arinsal<span class="hljs-tag">&lt;/<span class="hljs-name">Resort_Name</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_ID</span>&gt;</span>9499<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_ID</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Husa Xalet Besoli<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Mapping</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Latitude</span>&gt;</span>42.5682<span class="hljs-tag">&lt;/<span class="hljs-name">Latitude</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Longitude</span>&gt;</span>1.4898<span class="hljs-tag">&lt;/<span class="hljs-name">Longitude</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">Mapping</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_ID</span>&gt;</span>2200001204277<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_ID</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Name</span>&gt;</span>Husa Xalet Verdu<span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Name</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Mapping</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Latitude</span>&gt;</span>42.5682<span class="hljs-tag">&lt;/<span class="hljs-name">Latitude</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Longitude</span>&gt;</span>1.4898<span class="hljs-tag">&lt;/<span class="hljs-name">Longitude</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">Mapping</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Resort</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Destination</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Country</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Request Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String(2)</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>Username</td>
+                     <td>Account Information</td>
+                     <td>String(15)</td>
+                     <td>Max 15 alphanumeric digits</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>Account Information</td>
+                     <td>String(10)</td>
+                     <td>Max 10 alphanumeric digits</td>
+                  </tr>
+               </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <p><strong>Response Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Success</td>
+                     <td>Boolean</td>
+                     <td>True or False</td>
+                     <td>Clarifies if the request is successful</td>
+                  </tr>
+                  <tr>
+                     <td>LangID</td>
+                     <td>String(2)</td>
+                     <td>EN, GR, IT, GE, FR</td>
+                     <td>EN: English, GR: Greek , IT: Italian, GE: German, FR: French</td>
+                  </tr>
+                  <tr>
+                     <td>Country_Code</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>ISO_Codes</td>
+                     <td>String</td>
+                     <td>ISO</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Resort_ID</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Resort_Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>HID</td>
+                     <td>Numeric(15)</td>
+                     <td></td>
+                     <td>Max 15 Numeric Digits</td>
+                  </tr>
+                  <tr>
+                     <td>Hotel_Name</td>
+                     <td>String</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Latitude</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Longitude</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h1 id="booking-list">Booking list</h1>
+            <h2 id="booking-list-request">Booking List request</h2>
+            <blockquote>
+               <p>Request URL</p>
+            </blockquote>
+            <pre class="highlight "><code>URL<span class="hljs-regexp">/confirmations/g</span>et_agent_bookings.aspx</code></pre>
+            <blockquote>
+               <p>Request example with booking reservation ID</p>
+            </blockquote>
+            <pre class="highlight "><code>URL<span class="hljs-meta-keyword">/confirmations/</span>get_agent_bookings.aspx?LangID=EN<span class="hljs-variable">&amp;username</span>=xmltestme<span class="hljs-variable">&amp;password</span>=testme<span class="hljs-variable">&amp;</span>Booking_ref=<span class="hljs-number">11303060006278815</span></code></pre>
+            <blockquote>
+               <p>Request example with reservation date</p>
+            </blockquote>
+            <pre class="highlight "><code>URL/confirmations/get_agent_bookings.aspx?LangID=EN&amp;username=xmltestme&amp;password=testme&amp;res_from=<span class="hljs-number">01</span>/<span class="hljs-number">03</span>/<span class="hljs-number">2019</span>&amp;res_to=<span class="hljs-number">01</span>/<span class="hljs-number">03</span>/<span class="hljs-number">2019</span></code></pre>
+            <blockquote>
+               <p>Response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Handling_Agent</span>&gt;</span>NEW<span class="hljs-tag">&lt;/<span class="hljs-name">Handling_Agent</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Booking_info</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Booking</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"11303060006278815"</span> <span class="hljs-attr">Res_Date</span>=<span class="hljs-string">"06/03/2013"</span> <span class="hljs-attr">From_day</span>=<span class="hljs-string">"26/04/2013"</span> <span class="hljs-attr">To_day</span>=<span class="hljs-string">"30/04/2013"</span> <span class="hljs-attr">Num_of_</span> <span class="hljs-attr">rooms</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">CountryCode</span>=<span class="hljs-string">"AE"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Client</span> <span class="hljs-attr">Title</span>=<span class="hljs-string">"Mrs"</span> <span class="hljs-attr">First_name</span>=<span class="hljs-string">"clare"</span> <span class="hljs-attr">Last_name</span>=<span class="hljs-string">"smith"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Booking_Status</span>&gt;</span>NEW<span class="hljs-tag">&lt;/<span class="hljs-name">Booking_Status</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Conf_Status</span>&gt;</span>UNCONF<span class="hljs-tag">&lt;/<span class="hljs-name">Conf_Status</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>GBP<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Exchange_rate</span>&gt;</span>1.18<span class="hljs-tag">&lt;/<span class="hljs-name">Exchange_rate</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Final_Rate</span>&gt;</span>744.59<span class="hljs-tag">&lt;/<span class="hljs-name">Final_Rate</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"6202"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Jebel Ali Hotel and Golf Resort"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">GWGHotelID</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Hotel_Address</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Address</span>&gt;</span>Exit 13, Mina Jebel Ali | PO Box 9255<span class="hljs-tag">&lt;/<span class="hljs-name">Address</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Post_Code</span> /&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">City</span>&gt;</span>Jumeirah Beach<span class="hljs-tag">&lt;/<span class="hljs-name">City</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Tel</span>&gt;</span>0097 1444 73103<span class="hljs-tag">&lt;/<span class="hljs-name">Tel</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Fax</span>&gt;</span>0097 1444 73105<span class="hljs-tag">&lt;/<span class="hljs-name">Fax</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel_Address</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Room</span> <span class="hljs-attr">ID</span>=<span class="hljs-string">"205536"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">RoomType</span>&gt;</span>Twin/Double Room<span class="hljs-tag">&lt;/<span class="hljs-name">RoomType</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">ViewType</span>&gt;</span>Sea View<span class="hljs-tag">&lt;/<span class="hljs-name">ViewType</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">IndexType</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-name">IndexType</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">GWGRoomType</span> /&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">board</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">board</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">GuestCounts</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">GuestCount</span> <span class="hljs-attr">AgeQualifyingCode</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">Count</span>=<span class="hljs-string">"2"</span> /&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">GuestCounts</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Room</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Addons</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Offers</span> <span class="hljs-attr">Gala_meal</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Transfer</span>=<span class="hljs-string">""</span> <span class="hljs-attr">Early_Booking_Discount</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">Free_Stay</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">Special_Offer</span>=<span class="hljs-string">"1"</span> /&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Addons</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Notes</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Customer_Note</span>&gt;</span>
+                        &lt;![CDATA[ ]]&gt;
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">Customer_Note</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Notes</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">FlightDetails</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">ArrivalInfo</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">ArrivalAirportCode</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">DepartureInfo</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">DepartureAirportCode</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">FlightDetails</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Booking</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Booking_info</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p>Retrieve the bookings made during a specific from-to period, or checking in on a specific from-to period, or retrieve/validate information regarding a specific booking.</p>
+            <aside class="notice"> You would either use type1 request, where ResID (reservation id) need to be specified or you can use type2 request, where you provide Reservation date (at least one of from,to) or Checkin date (at least one of from,to) </aside>
+            <p><strong>Request Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Username</td>
+                     <td>String(15)</td>
+                     <td></td>
+                     <td>Account info</td>
+                  </tr>
+                  <tr>
+                     <td>Password</td>
+                     <td>String(10)</td>
+                     <td></td>
+                     <td>Account info</td>
+                  </tr>
+                  <tr>
+                     <td>chkin_from</td>
+                     <td>Date</td>
+                     <td>dd/mm/yyyy</td>
+                     <td>retrieve bookings with checkin &gt;= chkin_from</td>
+                  </tr>
+                  <tr>
+                     <td>chkin_to</td>
+                     <td>Date</td>
+                     <td>dd/mm/yyyy</td>
+                     <td>retreive bookings with checkin &lt;= chkin_to</td>
+                  </tr>
+                  <tr>
+                     <td>res_from</td>
+                     <td>String(15)</td>
+                     <td>dd/mm/yyyy</td>
+                     <td>retreive bookings with reservation date &gt;= res_from</td>
+                  </tr>
+                  <tr>
+                     <td>res_to</td>
+                     <td>String(10)</td>
+                     <td>dd/mm/yyyy</td>
+                     <td>retrieve bookings with reservation date &lt;=res_to</td>
+                  </tr>
+                  <tr>
+                     <td>Booking_ref</td>
+                     <td>Numeric</td>
+                     <td></td>
+                     <td>Retrieve booking detail given it’s Booking reference</td>
                   </tr>
                </tbody>
             </table>
             <h1 id="errors">Errors</h1>
-            <aside class=error> This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s front matter. Files are included in the order listed. </aside>
-            <p>The Kittn API uses the following error codes:</p>
-            <table>
-               <thead>
-                  <tr>
-                     <th>Error Code</th>
-                     <th>Meaning</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>400</td>
-                     <td>Bad Request -- The request could not be understood by the server due to malformed syntax.</td>
-                  </tr>
-                  <tr>
-                     <td>401</td>
-                     <td>Unauthorized -- Your API key is wrong.</td>
-                  </tr>
-                  <tr>
-                     <td>403</td>
-                     <td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-                  </tr>
-                  <tr>
-                     <td>404</td>
-                     <td>Not Found -- The specified kitten could not be found.</td>
-                  </tr>
-                  <tr>
-                     <td>405</td>
-                     <td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-                  </tr>
-                  <tr>
-                     <td>406</td>
-                     <td>Not Acceptable -- You requested a format that isn&#39;t JSON.</td>
-                  </tr>
-                  <tr>
-                     <td>410</td>
-                     <td>Gone -- The kitten requested has been removed from our servers.</td>
-                  </tr>
-                  <tr>
-                     <td>418</td>
-                     <td>I&#39;m a teapot.</td>
-                  </tr>
-                  <tr>
-                     <td>429</td>
-                     <td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-                  </tr>
-                  <tr>
-                     <td>500</td>
-                     <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-                  </tr>
-                  <tr>
-                     <td>503</td>
-                     <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-                  </tr>
-               </tbody>
-            </table>
+            <p>This section highlights common error messages and possible solutions.</p>
+            <h2 id="session-expired">Session Expired</h2>
+            <blockquote>
+               <p>Session expired response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span>Session Expired <span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Reason</strong> - This error means same session ID is used for two different bookings. One session ID can be used for one booking only. <strong>Solution</strong> - Use new session ID for every booking</p>
+            <h2 id="rate-difference">Rate difference</h2>
+            <blockquote>
+               <p>Rate difference response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span> Current rate for Room1_Rate is different than the original
+search<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">New_Rate</span>&gt;</span>622.97<span class="hljs-tag">&lt;/<span class="hljs-name">New_Rate</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Reason</strong> - Reason – Room price can change prior to the completion of booking. Therefore it is possible that during availability search system might show a different price but during booking process prices may change. <strong>Solution</strong> - Enter the new rate in the booking query</p>
+            <h2 id="invalid-account-information">Invalid account information</h2>
+            <blockquote>
+               <p>Invalid account response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span> Invalid account information<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Reason</strong> - Invalid username and password</p>
+            <h2 id="not-existing-room">Not existing room</h2>
+            <blockquote>
+               <p>Not existing room response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span>The room does not exist or it doesn't belong to the specific hotel or
+it cannot occupy the number of people<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Reason</strong> - The room is not anymore available in the hotel or particular room does not belong to the hotel or room cannot occupy the number of people. Sometime the availability search shows a particular room but the booking process might show the above error.</p>
+            <h2 id="invalid-ip">Invalid IP</h2>
+            <blockquote>
+               <p>Invalid IP Address response</p>
+            </blockquote>
+            <pre class="highlight xml"><code><span class="hljs-meta">&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span>Invalid IP Address<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p><strong>Reason</strong> - Your IPs are not whitelisted. <strong>Solution</strong> - Please send us your known IP range and XML credentials to allow us to whitelist</p>
+            <h2 id="already-cancelled">Already cancelled</h2>
+            <blockquote>
+               <p>Booking is already cancelled response</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span>Booking Is Already Cancelled<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span></code></pre>
+            <p><strong>Reason</strong> - Attempting to cancel a booking that is already cancelled</p>
+            <h2 id="other-considerations">Other considerations</h2>
+            <blockquote>
+               <p>No results request</p>
+            </blockquote>
+            <pre class="highlight "><code><span class="hljs-tag">&lt;<span class="hljs-name">HtSearchRq</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Success</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-name">Success</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ErrorMsg</span>&gt;</span>NO RESULTS FOUND<span class="hljs-tag">&lt;/<span class="hljs-name">ErrorMsg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+            <p>If availability search does not return any results please check the following</p>
+            <ul>
+               <li>LangID</li>
+               <li>Dstn, resort or hotel codes.</li>
+               <li>HID Incorrect codes will not show any results.</li>
+            </ul>
+            <aside class="notice"> We don't have any facility which displays whether the code is valid or not. </aside>
+            <p>No. of nights – Most of our properties work on more than 3 nights basis. Therefore Nights=2 may not show any results.</p>
+            <h2 id="full-error-message-table">Full Error message table</h2>
+            <ul>
+               <li>The session_ID is empty or not valid</li>
+               <li>Session Expired</li>
+               <li>Invalid number of Nights</li>
+               <li>Customer_title cannot be empty</li>
+               <li>Customer_firstname cannot be empty</li>
+               <li>Customer_lastname cannot be empty</li>
+               <li>Invalid number of Rooms</li>
+               <li>Invalid Room1_Rate</li>
+               <li>Invalid Room2_Rate</li>
+               <li>Invalid Room3_Rate</li>
+               <li>Invalid Checkin_Date</li>
+               <li>Search is for past dates</li>
+               <li>ADLTS_1 needs definition</li>
+               <li>CHILD_1 needs definition</li>
+               <li>Invalid RID</li>
+               <li>ADLTS_2 needs definition</li>
+               <li>CHILD_2 needs definition</li>
+               <li>Invalid RID_2</li>
+               <li>ADLTS_3 needs definition</li>
+               <li>CHILD_3 needs definition</li>
+               <li>Invalid RID_3</li>
+               <li>Invalid child age range (proper age range should be 2-14 or -1 for infants)</li>
+               <li>Child age cannot be blank</li>
+               <li>Invalid HID</li>
+               <li>No results found</li>
+               <li>The hotel does not exist or it is not on sale</li>
+               <li>The room does not exist or it doesn&#39;t belong to the specific hotel or it cannot occupy</li>
+               <li>the number of people</li>
+               <li>Room has no transfers</li>
+               <li>This room cannot be booked</li>
+               <li>Current rate for Room1_Rate is different than the original search</li>
+               <li>Current rate for Room2_Rate is different than the original search</li>
+               <li>Current rate for Room3_Rate is different than the original search</li>
+               <li>The Arr_Date is not a valid date</li>
+               <li>The Dep_Date is not a valid date</li>
+               <li>The Arr_DepTime is not valid</li>
+               <li>The Dep_DepTime is not valid</li>
+               <li>The Arr_Flight_From is not valid</li>
+               <li>The Arr_Flight_To is not valid</li>
+               <li>The Dep_Flight_From is not valid</li>
+               <li>The Transfer is not offered from Airport:</li>
+               <li>The Transfer is not offered for Arrival date:</li>
+               <li>The Transfer is not offered for Departure date:</li>
+               <li>The Dep_Flight_To is not valid</li>
+               <li>The Arr_Flight_Num is not valid</li>
+               <li>The Dep_Flight_Num is not valid</li>
+            </ul>
          </div>
          <div class=dark-box>
             <div class=lang-selector>
-               <a href=# data-language-name="bash">bash</a>
-               <a href=# data-language-name="ruby">ruby</a>
-               <a href=# data-language-name="python">python</a>
-               <a href=# data-language-name="javascript">javascript</a>
             </div>
          </div>
       </div>
