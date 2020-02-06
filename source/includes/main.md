@@ -43,22 +43,22 @@ There are two phases of Accreditation one in test the other live; this includes 
 
 ## Availability Search Request and Response
 > Request URL
-```http
+```plaintext
 URL/index.asp
 ```
 
 > Example request by **airport**
-```http
-URL/index?Dstn=FAO&LangID=EN&Username=xmltestme&Password=testme&...
+```plaintext
+URL/index.asp?Dstn=FAO&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example request by **resort**
-```http
-URL/index?RSRT=134&LangID=EN&Username=xmltestme&Password=testme&...
+```plaintext
+URL/index.asp?RSRT=134&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example request by **hotel id**
-```http
+```plaintext
 URL/index?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
@@ -347,7 +347,7 @@ Special search request criteria can be used to retrieve a deep link to the youtr
 
 ## Show Board Type – (LIGHT), (STANDARD), (CLASSIC), (PREMIER)
 >Example request
-```http
+```plaintext
 URL/index.asp?Checkin_Date=24/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=1&ADLTS_1=2&Dstn=RHO&Currency=GBP&StarCatAll=1&BT=1&SBT=1
 ```
 
@@ -418,7 +418,7 @@ YTS=1
 ```
 
 > Example request
-```http
+```plaintext
 URL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=2&ADLTS_1=2&ADLTS_2=1&Dstn=TFS&Currency=GBP&StarCatAll=1&BT=1&YTS=1
 ```
 
@@ -491,7 +491,7 @@ Parameters for sorting results
 
 # Destination and resort information request
 > Request to URL/get_destinations.asp
-```http
+```plaintext
 URL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
 ```
 
@@ -571,7 +571,7 @@ URL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
 
 # Hotel Detailed Description
 > Request to URL/get_hoteldetails.asp
-```http
+```plaintext
 URL/get_hoteldetails.asp?LangID=EN&HID=1&Username=xmltestme&Password=testme
 ```
 
@@ -722,7 +722,7 @@ On the get_hoteldetails RS the data fetched passes from an extra filtering
 SHA=1
 ```
 > Request example
-```http
+```plaintext
 URL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&Password=testme&sha=1
 ```
 
@@ -753,7 +753,7 @@ SCA=1
 ```
 
 > Request example
-```http
+```plaintext
 URL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&password=testme&sca=1
 ```
 > Response
@@ -773,7 +773,7 @@ URL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&password=testme&s
 
 # Prebook
 > Request
-```http
+```plaintext
 URL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=2&ADLTS_1=2&ADLTS_2=1&Dstn=TFS&Currency=GBP&StarCatAll=1&BT=1&YTS=1&CanxPol=1
 ```
 > Room search response
@@ -819,7 +819,7 @@ When sending a search request as detailed in section 3.0, you may add an additio
 
 # Hotel booking
 > Request to URL/bookings.asp
-```http
+```plaintext
 URL/bookings.asp?LangID=EN&HID=1572&Username=xmltestme&Password=testme&....
 ```
 > Hotel booking response
@@ -892,12 +892,12 @@ This must take place in 2 steps.
 
 ## Cancellation fees request
 > Request URL
-```http
+```plaintext
 URL/get_canx_fees.asp
 ```
 
 > Request example
-```http
+```plaintext
 URL/get_canx_fees.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
 ```
 > Response
@@ -926,11 +926,11 @@ This step will not cancel the booking; it will only display cancellation charge
 
 ## Finalize Cancellation Request
 > Request URL
-```http
+```plaintext
 URL/cancel.asp
 ```
 > Request example
-```http
+```plaintext
 URL/cancel.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
 ```
 > Response
@@ -954,12 +954,12 @@ URL/cancel.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
 
 ## Hotel - Fill descriptive text
 > Request URL
-```http
+```plaintext
 URL/get_hotel_descriptions.asp
 ```
 
 > Request example
-```http
+```plaintext
 URL/get_hotel_descriptions.asp?LangID=EN&Username=xmltestme&password=testme
 ```
 
@@ -999,12 +999,12 @@ of Bodrum and 35 km from the Bodrum-Milas Airport.]]>
 ## Hotel List by Destination
 
 > Request URL
-```http
+```plaintext
 URL/get_hotel_list.asp
 ```
 
 > Request example
-```http
+```plaintext
 URL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
 ```
 
@@ -1091,17 +1091,17 @@ URL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
 
 ## Booking List request
 > Request URL
-```http
+```plaintext
 URL/confirmations/get_agent_bookings.aspx
 ```
 
 > Request example with booking reservation ID
-```http
+```plaintext
 URL/confirmations/get_agent_bookings.aspx?LangID=EN&username=xmltestme&password=testme&Booking_ref=11303060006278815
 ```
 
 > Request example with reservation date
-```http
+```plaintext
 URL/confirmations/get_agent_bookings.aspx?LangID=EN&username=xmltestme&password=testme&res_from=01/03/2019&res_to=01/03/2019
 ```
 
