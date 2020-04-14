@@ -24,7 +24,7 @@ Username: `xmltestme`<br>
 Password: `testme`
 
 **Production details**<br>
-URL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
+URL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://xmlapi.youtravel.com/webservices/`</a><br>
 Username: `your username`<br>
 Password: `your password`
 
