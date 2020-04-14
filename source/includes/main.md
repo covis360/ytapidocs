@@ -24,7 +24,7 @@ Username: `xmltestme`<br>
 Password: `testme`
 
 **Production details**<br>
-URL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
+URL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://xmlapi.youtravel.com/webservices/`</a><br>
 Username: `your username`<br>
 Password: `your password`
 
@@ -286,7 +286,7 @@ URL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 | StarCat2 | Youtravel.com 2 stars category | Numeric | 1 | All combinations of star categories can be used (1\*and 2\* hotels will be shown as well with the 2\*) |
 | StarCat3 | Youtravel.com 3 stars category | Numeric | 1 | All combinations of star categories can be used (2\*and 3\* hotels will be shown as well with the 3\*) |
 | StarCat4 | Youtravel.com 4 stars category | Numeric | 1 | All combinations of star categories can be used (4\*and 5\* hotels will be shown as well with the 5\*) |
-| LangID | Language | String(2) | EN, IT,GE,FR,GR | Supported Languages <br>EN: English <br> IT: Italian<br>GE: German<br>FR: French<br>GR: Greek |
+| LangID | Language | String(2) | EN | Supported Languages <br>EN: English |
 | Username | | String(15) | Account info | Max 15 alphanumeric Digits |
 | Password | | String(10) | Account | Max 10 alphanumeric Digits |
 
@@ -548,7 +548,7 @@ URL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
 
 | Name   | Type   | Format   | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
-| LangID  | String  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String  | EN  | EN: English |
 | Username  | String(15)   |   | Account info  |
 | Password | String(10) | | Account info |
 
@@ -563,7 +563,7 @@ URL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
 | Name  | Type   | Format   | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
 | Success  | Boolean  | True or False  | Clarifies if the request is successful  |
-| LangID  | String  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String  | EN | EN: English  |
 | Country_ID  | String  |   |   |
 | Name  | String  |   |   |
 | Country_Code  | String  |   |   |
@@ -685,7 +685,7 @@ On the get_hoteldetails RS the data fetched passes from an extra filtering
 
 | Name  | Type  | Format  | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
-| LangID  | String  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String  | EN  | EN: English  |
 | HID  | Numeric(15)  |   |   |
 | Username  | String(15)  |   | Account info  |
 | Password  | String(10)  |   | Account info  |
@@ -701,7 +701,7 @@ On the get_hoteldetails RS the data fetched passes from an extra filtering
 | Name  | Type  | Format  | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
 | Success  | Boolean  | True or False  | Clarifies if the request is successful  |
-| LangID  | String  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String  | EN  | EN: English  |
 | HID | Numeric(15) | | |
 | Destination | Numeric | | Destination and resort |
 | Hotel_Name | String | | |
@@ -860,7 +860,7 @@ URL/bookings.asp?LangID=EN&HID=1572&Username=xmltestme&Password=testme&....
 | ChildAgeR3C2 | Age for the 2nd child in the 3rd room | Numeric | 2-14 for child -1 or 1 for infant | 2-14 for child. If child is < 2. Then counts as infant |
 | ChildAgeR3C3 | Age for the 3rd child in the 3rd room | Numeric | 2-14 for child -1 or 1 for infant | 2-14 for child. If child is < 2. Then counts as infant |
 | ChildAgeR3C4 | Age for the 4th child in the 3rd room | Numeric | 2-14 for child -1 or 1 for infant | 2-14 for child. If child is < 2. Then counts as infant |
-| LangID | Language | String(2) | EN, GR, IT, GE, FR | EN: English, GR: Greek , IT: Italian, GE: German, FR: French |
+| LangID | Language | String(2) | EN | EN: English |
 | HID | Hotel ID | Numeric |  | Max 15 Numeric Digits |
 | RID | Room id for the 1st room | Alphanumeric |  | Max 30 alphanumeric characters |
 | RID_2 | Room id for the 2nd room | Alphanumeric |  | Max 30 alphanumeric characters |
@@ -996,7 +996,7 @@ of Bodrum and 35 km from the Bodrum-Milas Airport.]]>
 
 | Name  | Type  | Format  | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
-| LangID  | String(2)  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String(2)  | EN  | EN: English  |
 | Username  | Account Information  | String(15)  | Max 15 alphanumeric digits  |
 | Password  | Account Information  | String(10)  | Max 10 alphanumeric digits  |
 
@@ -1065,7 +1065,7 @@ URL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
 
 | Name  | Type  | Format  | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
-| LangID  | String(2)  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String(2)  | EN  | EN: English  |
 | Username  | Account Information  | String(15)  | Max 15 alphanumeric digits  |
 | Password  | Account Information  | String(10)  | Max 10 alphanumeric digits  |
 
@@ -1080,7 +1080,7 @@ URL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
 | Name  | Type  | Format  | Comment  |
 | ------------ | ------------ | ------------ | ------------ |
 | Success  | Boolean  | True or False  | Clarifies if the request is successful  |
-| LangID  | String(2)  | EN, GR, IT, GE, FR  | EN: English, GR: Greek , IT: Italian, GE: German, FR: French  |
+| LangID  | String(2)  | EN  | EN: English  |
 | Country_Code  | String  |   |   |
 | Name  | String  |   |   |
 | ISO_Codes  | String  | ISO  |   |
