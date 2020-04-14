@@ -19,9 +19,14 @@ For security purposes we require static IP addresses otherwise the access to the
 
 ## Server details
 **Test server**<br>
-URL: <a href="http://testxml.youtravel.com/webservicestest/" target="_blank">`http://testxml.youtravel.com/webservicestest`</a><br>
+URL: <a href="http://testxml.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
 Username: `xmltestme`<br>
 Password: `testme`
+
+**Production details**<br>
+URL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
+Username: `your username`<br>
+Password: `your password`
 
 **Live Access**
 As part of the final stages of testing there is an accreditation process necessitating sign off from our XML support team.<br>
