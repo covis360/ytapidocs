@@ -17,14 +17,14 @@ To help you navigate the docs, this page is split into 3 vertical sections:
 For security purposes we require static IP addresses otherwise the access to the feed won’t be authorized.
 </aside>
 
-## Server details
+## Server details for availability and prebook requests
 **Test server**<br>
-URL: <a href="http://testxml.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
+availURL: <a href="http://testxml.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
 Username: `xmltestme`<br>
 Password: `testme`
 
-**Production details**<br>
-URL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://xmlapi.youtravel.com/webservices/`</a><br>
+**Production server**<br>
+availURL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://xmlapi.youtravel.com/webservices/`</a><br>
 Username: `your username`<br>
 Password: `your password`
 
@@ -35,6 +35,13 @@ There are two phases of Accreditation one in test the other live; this includes 
 <aside class="notice">
   <b>IP Whitelisting:</b> to obtain a successful response from our live web service we require your known IP range,
 </aside>
+
+## Server details for booking and canrequests
+**Test server**<br>
+bookURL: <a href="http://testxml.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
+
+**Production server**<br>
+bookURL: <a href="http://book.youtravel.com/webservices/" target="_blank">`http://book.youtravel.com/webservices/`</a><br>
 
 
 ## Testing best practices
@@ -48,22 +55,22 @@ There are two phases of Accreditation one in test the other live; this includes 
 ## Availability Search Request and Response
 > Request URL
 ```plaintext
-URL/index.asp
+availURL/index.asp
 ```
 
 > Example request by **airport**
 ```plaintext
-URL/index.asp?Dstn=FAO&LangID=EN&Username=xmltestme&Password=testme&...
+availURL/index.asp?Dstn=FAO&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example request by **resort**
 ```plaintext
-URL/index.asp?RSRT=134&LangID=EN&Username=xmltestme&Password=testme&...
+availURL/index.asp?RSRT=134&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example request by **hotel id**
 ```plaintext
-URL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
+availURL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example error response
@@ -291,8 +298,20 @@ URL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 | Password | | String(10) | Account | Max 10 alphanumeric Digits |
 
 
+<aside class="notice">
+    In the same request, only 1 method can be used (Dstn, or Rsrt, or HID). You cannot combine 2 or more.
+</aside>
+
+
+<aside class="notice">
+    ADLTS_1 and CHILD_1 in the request will match Room_1 in the response (same for ADLTS_2 with Room_2 etc)
+</aside>
+
+
+
+
 ## Board option descriptions
-URL: <a href="https://www.youtravel.com/boardoptions_popup.asp" target="_blank">`https://www.youtravel.com/boardoptions_popup.asp`</a>
+boardURL: <a href="https://www.youtravel.com/boardoptions_popup.asp" target="_blank">`https://www.youtravel.com/boardoptions_popup.asp`</a>
 
 **Deep Link**<br>
 Special search request criteria can be used to retrieve a deep link to the youtravel.com website from the XML feed.
@@ -331,7 +350,7 @@ Special search request criteria can be used to retrieve a deep link to the youtr
 | Currency | | String | | |
 | Hotel_ID | | Numeric | | |
 | Hotel_Name | | String | | |
-| Youtravel_Rating | | String | 1, 1+, 2, 2+, 3, 3+, 4,4+, 5, 5+ | For Youtravel rating information visit <a href="http://www.youtravel.com/starrating.asp" target="_blank">http://www.youtravel.com/starrating.asp</a> |
+| Youtravel_Rating | | String | 1, 1+, 2, 2+, 3, 3+, 4,4+, 5, 5+ |  |
 | Official_Rating | | String | | Rating given to property by local tourist board |
 | Board_Type | | String | RO,SC,BB,HB,FB,AI, VILLA | RO : Room only <br>SC: Self catering <br>BB: Bed & Breakfast <br> HB: Half Board <br> FB: Full Board |
 | Child_Age | | Numeric | | Between 2-14 years old |
@@ -352,7 +371,7 @@ Special search request criteria can be used to retrieve a deep link to the youtr
 ## Show Board Type – (LIGHT), (STANDARD), (CLASSIC), (PREMIER)
 >Example request
 ```plaintext
-URL/index.asp?Checkin_Date=24/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=1&ADLTS_1=2&Dstn=RHO&Currency=GBP&StarCatAll=1&BT=1&SBT=1
+boardURL/index.asp?Checkin_Date=24/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=1&ADLTS_1=2&Dstn=RHO&Currency=GBP&StarCatAll=1&BT=1&SBT=1
 ```
 
 > Response
@@ -423,7 +442,7 @@ YTS=1
 
 > Example request
 ```plaintext
-URL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=2&ADLTS_1=2&ADLTS_2=1&Dstn=TFS&Currency=GBP&StarCatAll=1&BT=1&YTS=1
+availURL/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=2&ADLTS_1=2&ADLTS_2=1&Dstn=TFS&Currency=GBP&StarCatAll=1&BT=1&YTS=1
 ```
 
 > Example response<br>
@@ -496,7 +515,7 @@ Parameters for sorting results
 # Destination and resort information request
 > Request to URL/get_destinations.asp
 ```plaintext
-URL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
+availURL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
 ```
 
 >Example of the destinations & resort information response
@@ -576,7 +595,7 @@ URL/get_destinations.asp?LangID=EN&Username=xmltestme&Password=testme
 # Hotel Detailed Description
 > Request to URL/get_hoteldetails.asp
 ```plaintext
-URL/get_hoteldetails.asp?LangID=EN&HID=1&Username=xmltestme&Password=testme
+availURL/get_hoteldetails.asp?LangID=EN&HID=1&Username=xmltestme&Password=testme
 ```
 
 > Avalilability Response<br>
@@ -727,7 +746,7 @@ SHA=1
 ```
 > Request example
 ```plaintext
-URL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&Password=testme&sha=1
+availURL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&Password=testme&sha=1
 ```
 
 > Response
@@ -758,7 +777,7 @@ SCA=1
 
 > Request example
 ```plaintext
-URL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&password=testme&sca=1
+availURL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&password=testme&sca=1
 ```
 > Response
 ```xml
@@ -778,7 +797,7 @@ URL/get_hoteldetails.asp?LangID=EN&HID=2970&Username=xmltestme&password=testme&s
 # Prebook
 > Request
 ```plaintext
-URL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=2&ADLTS_1=2&ADLTS_2=1&Dstn=TFS&Currency=GBP&StarCatAll=1&BT=1&YTS=1&CanxPol=1
+availURL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=testme&Nights=7&LangID=EN&Rooms=2&ADLTS_1=2&ADLTS_2=1&Dstn=TFS&Currency=GBP&StarCatAll=1&BT=1&YTS=1&CanxPol=1
 ```
 > Room search response
 ```xml
@@ -790,7 +809,7 @@ URL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=te
     <Offers Lastminute_Offer="0" Early_Booking_Discount="0" Free_Stay="0" Free_Transfer="0" Gala_Meals="0"></Offers>
 </Room>
 ```
-> CanxPolicy token may be used during the prebook stage to retrieve cancellation rules<br>
+> CanxPolicy token to be during the prebook stage to retrieve cancellation rules<br>
 > Get cancellation policy response
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1" ?>
@@ -817,22 +836,22 @@ URL/webservices/index.asp?Checkin_Date=30/09/2013&Username=xmltestme&Password=te
 </HtSearchRq>
 ```
 
-Before proceeding to the booking stage, you may wish to retrieve the cancellation terms for a given hotel room before committing. This is an optional step in the search and book workflow.
+Before proceeding to the booking stage, you should retrieve the cancellation terms for a given hotel room before committing.
 
 When sending a search request as detailed in section 3.0, you may add an additional parameter to the query string to emit cancellation tokens:
 
 # Hotel booking
 > Request to URL/bookings.asp
 ```plaintext
-URL/bookings.asp?LangID=EN&HID=1572&Username=xmltestme&Password=testme&....
+bookURL/bookings.asp?LangID=EN&HID=1572&Username=xmltestme&Password=testme&Cust_ResID=9879&requests=SpecialRequests....
 ```
 > Hotel booking response
 ```xml
 <?xml version= “1.0” encoding="ISO-8859-1" ?>
 <HtSearchRq>
     <Success>true</Success>
-    <Booking_ref>10611121134459624</Booking_ref>
-    <Voucher_Url>http://www.youtravel.com/voucher.asp?ID=10611121134459624</Voucher_Url>
+    <Booking_ref>102114011</Booking_ref>
+    <Voucher_Url>http://vouchers.youtravel.com/voucher.asp?ID=102114011_ad92f6965e2ef197428f6e6e42cd6d72</Voucher_Url>
 </HtSearchRq>
 ```
 
@@ -886,6 +905,10 @@ URL/bookings.asp?LangID=EN&HID=1572&Username=xmltestme&Password=testme&....
 | Username | Account information | String | Max 15 alphanumeric digits |
 | Password | Account information | String | | Max 10 Alpa Numeric digits |
 
+<aside class="notice">
+    Special requests information will only appear in voucher. Special requests cannot be guaranteed and is at hotel’s discretion
+</aside>
+
 # Cancelation
 
 ## Cancel via web service
@@ -897,12 +920,12 @@ This must take place in 2 steps.
 ## Cancellation fees request
 > Request URL
 ```plaintext
-URL/get_canx_fees.asp
+bookURL/get_canx_fees.asp
 ```
 
 > Request example
 ```plaintext
-URL/get_canx_fees.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
+bookURL/get_canx_fees.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
 ```
 > Response
 ```xml
@@ -931,11 +954,11 @@ This step will not cancel the booking; it will only display cancellation charge
 ## Finalize Cancellation Request
 > Request URL
 ```plaintext
-URL/cancel.asp
+bookURL/cancel.asp
 ```
 > Request example
 ```plaintext
-URL/cancel.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
+bookURL/cancel.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
 ```
 > Response
 ```xml
@@ -959,12 +982,12 @@ URL/cancel.asp?Booking_ref=10231122311233112&Username=xmltestme&password=testme
 ## Hotel - Fill descriptive text
 > Request URL
 ```plaintext
-URL/get_hotel_descriptions.asp
+availURL/get_hotel_descriptions.asp
 ```
 
 > Request example
 ```plaintext
-URL/get_hotel_descriptions.asp?LangID=EN&Username=xmltestme&password=testme
+availURL/get_hotel_descriptions.asp?LangID=EN&Username=xmltestme&password=testme
 ```
 
 > Response
@@ -1004,12 +1027,12 @@ of Bodrum and 35 km from the Bodrum-Milas Airport.]]>
 
 > Request URL
 ```plaintext
-URL/get_hotel_list.asp
+availURL/get_hotel_list.asp
 ```
 
 > Request example
 ```plaintext
-URL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
+availURL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
 ```
 
 > Response
@@ -1096,17 +1119,17 @@ URL/get_hotel_list.asp?LangID=EN&username=xmltestme&password=testme
 ## Booking List request
 > Request URL
 ```plaintext
-URL/confirmations/get_agent_bookings.aspx
+availURL/confirmations/get_agent_bookings.aspx
 ```
 
 > Request example with booking reservation ID
 ```plaintext
-URL/confirmations/get_agent_bookings.aspx?LangID=EN&username=xmltestme&password=testme&Booking_ref=11303060006278815
+availURL/confirmations/get_agent_bookings.aspx?LangID=EN&username=xmltestme&password=testme&Booking_ref=11303060006278815
 ```
 
 > Request example with reservation date
 ```plaintext
-URL/confirmations/get_agent_bookings.aspx?LangID=EN&username=xmltestme&password=testme&res_from=01/03/2019&res_to=01/03/2019
+availURL/confirmations/get_agent_bookings.aspx?LangID=EN&username=xmltestme&password=testme&res_from=01/03/2019&res_to=01/03/2019
 ```
 
 >Response
