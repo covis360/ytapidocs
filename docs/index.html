@@ -1839,7 +1839,7 @@ Maximum 7 nights. Children till 13.9 years dont have to pay for tax.) ]]&gt;
                </tbody>
             </table>
             <aside class="notice"> Special requests information will only appear in voucher. Special requests cannot be guaranteed and is at hotel’s discretion </aside>
-            <h1 id="cancelation">Cancelation</h1>
+            <h1 id="cancellation">Cancellation</h1>
             <h2 id="cancel-via-web-service">Cancel via web service</h2>
             <p>The cancellation message is used to retrieve cancellation fees for the given booking. This must take place in 2 steps.</p>
             <ol>
@@ -1865,7 +1865,7 @@ Maximum 7 nights. Children till 13.9 years dont have to pay for tax.) ]]&gt;
     <span class="hljs-tag">&lt;<span class="hljs-name">Fees</span>&gt;</span>10.00<span class="hljs-tag">&lt;/<span class="hljs-name">Fees</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Currency</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">Currency</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
-            <aside class="notice"> This step will not cancel the booking; it will only display cancellation charge </aside>
+            <aside class="notice"> This step will not cancel the booking; it will only display cancellation charge as of the requested date and time </aside>
             <p><strong>Request Parameters</strong></p>
             <table>
                <thead>
@@ -1965,20 +1965,18 @@ Maximum 7 nights. Children till 13.9 years dont have to pay for tax.) ]]&gt;
     <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Salmakis Beach Resort and Spa"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">Description</span>&gt;</span>
             &lt;![CDATA[
-The Salmakis Beach Resort and Spa is set in the quieter part of Bodrum Bay and
-boasts impressive and varied Mediterranean architecture. Situated above a
-wonderful beach it also offers spectacular views across the bay to the harbor and
-castle of Bodrum. The resort includes 2 in-house restaurants, a 1500 m2 full service
-spa center, among other facilities and features. It is located only 1 km from the centre
-of Bodrum and 35 km from the Bodrum-Milas Airport.]]&gt;
+            The Salmakis Beach Resort and Spa is set in the quieter part of Bodrum Bay and
+            boasts impressive and varied Mediterranean architecture. Situated above a
+            wonderful beach it also offers spectacular views across the bay to the harbor and
+            castle of Bodrum. The resort includes 2 in-house restaurants, a 1500 m2 full service
+            spa center, among other facilities and features. It is located only 1 km from the centre
+            of Bodrum and 35 km from the Bodrum-Milas Airport.
+            ]]&gt;
         <span class="hljs-tag">&lt;/<span class="hljs-name">Description</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Hotel</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"Orient Palace"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Description</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">null</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">Description</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">HtSearchRq</span>&gt;</span></code></pre>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Photos</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Photo</span>&gt;</span>http://www.youhotels.com/photos/2/1.gif<span class="hljs-tag">&lt;/<span class="hljs-name">Photo</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Photos</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Hotel</span>&gt;</span></code></pre>
             <p><strong>Request Parameters</strong></p>
             <table>
                <thead>
@@ -2007,6 +2005,40 @@ of Bodrum and 35 km from the Bodrum-Milas Airport.]]&gt;
                      <td>Account Information</td>
                      <td>String(10)</td>
                      <td>Max 10 alphanumeric digits</td>
+                  </tr>
+               </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <p><strong>Response Parameters</strong></p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Type</th>
+                     <th>Format</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Success</td>
+                     <td>Boolean</td>
+                     <td>True or False</td>
+                     <td>Clarifies if the request is successful</td>
+                  </tr>
+                  <tr>
+                     <td>Description</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Detailed hotel description</td>
+                  </tr>
+                  <tr>
+                     <td>Photos</td>
+                     <td>String</td>
+                     <td></td>
+                     <td>Hotel thumbnail photo</td>
                   </tr>
                </tbody>
             </table>
@@ -2431,7 +2463,29 @@ it cannot occupy the number of people<span class="hljs-tag">&lt;/<span class="hl
                <li>The Dep_Flight_Num is not valid</li>
             </ul>
             <h1 id="faq">FAQ</h1>
-            <h2 id="tbd">tbd</h2>
+            <h2 id="how-to-map">How to map</h2>
+            <p><strong>Geo tree map</strong></p>
+            <ul>
+               <li>Country &gt; Destination &gt; Resort &gt; Hotel</li>
+            </ul>
+            <br>
+            <hr>
+            <br>
+            <p><strong>Mapping can be done at</strong></p>
+            <ul>
+               <li>Destination level</li>
+               <li>Resort level</li>
+               <li>Hotel level</li>
+               <li>Room type level (available for static content only)</li>
+            </ul>
+            <h2 id="recommended-timeout-settings">Recommended timeout settings</h2>
+            <ul>
+               <li>Availability : 10 seconds</li>
+               <li>Prebook : 60 seconds</li>
+               <li>Booking : 60 seconds</li>
+               <li>Get cancellation fees : 60 seconds</li>
+               <li>Cancellation : 60 seconds</li>
+            </ul>
          </div>
          <div class=dark-box>
             <div class=lang-selector>

@@ -1376,11 +1376,6 @@ Therefore Nights=2 may not show any results.
 **Geo tree map**
  - Country > Destination > Resort > Hotel
 
-<br>
-
-------------
-
-<br>
 
 **Mapping can be  done at**
 - Destination level
