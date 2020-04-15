@@ -909,7 +909,7 @@ bookURL/bookings.asp?LangID=EN&HID=1572&Username=xmltestme&Password=testme&Cust_
     Special requests information will only appear in voucher. Special requests cannot be guaranteed and is at hotel’s discretion
 </aside>
 
-# Cancelation
+# Cancellation
 
 ## Cancel via web service
 The cancellation message is used to retrieve cancellation fees for the given booking.
@@ -939,7 +939,7 @@ bookURL/get_canx_fees.asp?Booking_ref=10231122311233112&Username=xmltestme&passw
 ```
 
 <aside class="notice">
-This step will not cancel the booking; it will only display cancellation charge
+This step will not cancel the booking; it will only display cancellation charge as of the requested date and time
 </aside>
 
 **Request Parameters**
@@ -999,20 +999,18 @@ availURL/get_hotel_descriptions.asp?LangID=EN&Username=xmltestme&password=testme
     <Hotel Id="2" Name="Salmakis Beach Resort and Spa">
         <Description>
             <![CDATA[
-The Salmakis Beach Resort and Spa is set in the quieter part of Bodrum Bay and
-boasts impressive and varied Mediterranean architecture. Situated above a
-wonderful beach it also offers spectacular views across the bay to the harbor and
-castle of Bodrum. The resort includes 2 in-house restaurants, a 1500 m2 full service
-spa center, among other facilities and features. It is located only 1 km from the centre
-of Bodrum and 35 km from the Bodrum-Milas Airport.]]>
+            The Salmakis Beach Resort and Spa is set in the quieter part of Bodrum Bay and
+            boasts impressive and varied Mediterranean architecture. Situated above a
+            wonderful beach it also offers spectacular views across the bay to the harbor and
+            castle of Bodrum. The resort includes 2 in-house restaurants, a 1500 m2 full service
+            spa center, among other facilities and features. It is located only 1 km from the centre
+            of Bodrum and 35 km from the Bodrum-Milas Airport.
+            ]]>
         </Description>
+        <Photos>
+            <Photo>http://www.youhotels.com/photos/2/1.gif</Photo>
+        </Photos>
     </Hotel>
-    <Hotel Id="3" Name="Orient Palace">
-        <Description>
-            <null>
-        </Description>
-    </Hotel>
-</HtSearchRq>
 ```
 
 **Request Parameters**
@@ -1022,6 +1020,20 @@ of Bodrum and 35 km from the Bodrum-Milas Airport.]]>
 | LangID  | String(2)  | EN  | EN: English  |
 | Username  | Account Information  | String(15)  | Max 15 alphanumeric digits  |
 | Password  | Account Information  | String(10)  | Max 10 alphanumeric digits  |
+
+<br>
+
+------------
+
+<br>
+
+**Response Parameters**
+
+| Name  | Type  | Format  | Comment  |
+| ------------ | ------------ | ------------ | ------------ |
+| Success  | Boolean  | True or False  | Clarifies if the request is successful  |
+| Description | String |  | Detailed hotel description |
+| Photos | String |  | Hotel thumbnail photo |
 
 ## Hotel List by Destination
 
@@ -1359,4 +1371,27 @@ Therefore Nights=2 may not show any results.
 
 # FAQ
 
-## tbd
+## How to map
+
+**Geo tree map**
+ - Country > Destination > Resort > Hotel
+
+<br>
+
+------------
+
+<br>
+
+**Mapping can be  done at**
+- Destination level
+- Resort level
+- Hotel level
+- Room type level (available for static content only)
+
+## Recommended timeout settings
+
+- Availability : 10 seconds
+- Prebook : 60 seconds
+- Booking : 60 seconds
+- Get cancellation fees : 60 seconds
+- Cancellation : 60 seconds
