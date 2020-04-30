@@ -52,7 +52,7 @@
       "gulp-w3c-html-validator": "~1.4",
       "highlight.js": "~9.17",
       "imagesloaded": "~4.1",
-      "jquery": "~3.4",
+      "jquery": "~3.5",
       "jquery-highlight": "~3.5",
       "jquery-ui": "~1.12",
       "jquery-ui-dist": "~1.12",
