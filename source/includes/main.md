@@ -21,7 +21,7 @@ For security purposes we require static IP addresses otherwise the access to the
 **Test server**<br>
 availURL: <a href="http://testxml.youtravel.com/webservices/" target="_blank">`http://testxml.youtravel.com/webservices/`</a><br>
 Username: `xmltestme`<br>
-Password: `testme`
+Password: `testme`<br>
 
 **Production server**<br>
 availURL: <a href="http://xmlapi.youtravel.com/webservices/" target="_blank">`http://xmlapi.youtravel.com/webservices/`</a><br>
