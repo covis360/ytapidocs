@@ -63,14 +63,9 @@ availURL/index.asp
 availURL/index.asp?Dstn=FAO&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
-> Example request by **resort**
-```plaintext
-availURL/index.asp?RSRT=134&LangID=EN&Username=xmltestme&Password=testme&...
-```
-
 > Example request by **hotel id**
 ```plaintext
-availURL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
+availURL/index.asp?HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 ```
 
 > Example error response
@@ -257,8 +252,6 @@ availURL/index.asp?RSRT=HID=1572&LangID=EN&Username=xmltestme&Password=testme&..
 | Field  | Meaning   | Type   | Format   | Comment   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | DSTN   | Destination ISO code   | String   |   |   |
-| HID   | Hotel ID  | Numeric  | Multiple seperated by comma  | Maximum of 15 Digits per ID  |
-| RSRT  | Resort ID  | Numeric   |   |   |
 | Checkin_Date  | Check-in date  | Date  | dd/mm/yyyy  |   |
 | Nights  | Number of nights | Numeric |   | Maximum number of nights is 99  |
 | Rooms | Number of rooms | Numeric | Maximum number of rooms is 3|
