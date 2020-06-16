@@ -66,13 +66,9 @@
             </blockquote>
             <pre class="highlight plaintext"><code>availURL/index.asp?Dstn=FAO&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
             <blockquote>
-               <p>Example request by <strong>resort</strong></p>
-            </blockquote>
-            <pre class="highlight plaintext"><code>availURL/index.asp?RSRT=134&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
-            <blockquote>
                <p>Example request by <strong>hotel id</strong></p>
             </blockquote>
-            <pre class="highlight plaintext"><code>availURL/index.asp?RSRT=HID=1572&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
+            <pre class="highlight plaintext"><code>availURL/index.asp?HID=1572&amp;LangID=EN&amp;Username=xmltestme&amp;Password=testme&amp;...</code></pre>
             <blockquote>
                <p>Example error response</p>
             </blockquote>
@@ -261,22 +257,8 @@
                </thead>
                <tbody>
                   <tr>
-                     <td>DSTN</td>
-                     <td>Destination ISO code</td>
-                     <td>String</td>
-                     <td></td>
-                     <td></td>
-                  </tr>
-                  <tr>
                      <td>HID</td>
                      <td>Hotel ID</td>
-                     <td>Numeric</td>
-                     <td>Multiple seperated by comma</td>
-                     <td>Maximum of 15 Digits per ID</td>
-                  </tr>
-                  <tr>
-                     <td>RSRT</td>
-                     <td>Resort ID</td>
                      <td>Numeric</td>
                      <td></td>
                      <td></td>
@@ -542,7 +524,6 @@
                   </tr>
                </tbody>
             </table>
-            <aside class="notice"> In the same request, only 1 method can be used (Dstn, or Rsrt, or HID). You cannot combine 2 or more. </aside>
             <aside class="notice"> ADLTS_1 and CHILD_1 in the request will match Room_1 in the response (same for ADLTS_2 with Room_2 etc) </aside>
             <h2 id="board-option-descriptions">Board option descriptions</h2>
             <p>boardURL: <a href="https://www.youtravel.com/boardoptions_popup.asp" target="_blank"><code>https://www.youtravel.com/boardoptions_popup.asp</code></a></p>
@@ -2468,9 +2449,6 @@ it cannot occupy the number of people<span class="hljs-tag">&lt;/<span class="hl
             <ul>
                <li>Country &gt; Destination &gt; Resort &gt; Hotel</li>
             </ul>
-            <br>
-            <hr>
-            <br>
             <p><strong>Mapping can be done at</strong></p>
             <ul>
                <li>Destination level</li>

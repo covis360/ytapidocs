@@ -251,7 +251,7 @@ availURL/index.asp?HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 
 | Field  | Meaning   | Type   | Format   | Comment   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| DSTN   | Destination ISO code   | String   |   |   |
+| HID     | Hotel ID   | Numeric   |   |   |
 | Checkin_Date  | Check-in date  | Date  | dd/mm/yyyy  |   |
 | Nights  | Number of nights | Numeric |   | Maximum number of nights is 99  |
 | Rooms | Number of rooms | Numeric | Maximum number of rooms is 3|
@@ -289,11 +289,6 @@ availURL/index.asp?HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 | LangID | Language | String(2) | EN | Supported Languages <br>EN: English |
 | Username | | String(15) | Account info | Max 15 alphanumeric Digits |
 | Password | | String(10) | Account | Max 10 alphanumeric Digits |
-
-
-<aside class="notice">
-    In the same request, only 1 method can be used (Dstn, or Rsrt, or HID). You cannot combine 2 or more.
-</aside>
 
 
 <aside class="notice">
