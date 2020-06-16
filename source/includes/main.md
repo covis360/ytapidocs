@@ -296,8 +296,6 @@ availURL/index.asp?HID=1572&LangID=EN&Username=xmltestme&Password=testme&...
 </aside>
 
 
-
-
 ## Board option descriptions
 boardURL: <a href="https://www.youtravel.com/boardoptions_popup.asp" target="_blank">`https://www.youtravel.com/boardoptions_popup.asp`</a>
 
